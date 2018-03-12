@@ -6,8 +6,10 @@
 */
 #include "my.h"
 
-void	my_memset(char *str, int size)
+void	my_memset(void *data, int size)
 {
+	char	*str = data;
+
 	for (int i = 0; i < size; ++i)
 		str[i] = 0;
 }

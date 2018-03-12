@@ -26,10 +26,8 @@ SRCS =		array/my_show_word_array.c 		\
 		mem/my_malloc.c				\
 		mem/my_memdel.c				\
 		mem/my_memset.c				\
-		mem/my_realloc_nb.c			\
-		mem/my_realloc_str.c			\
-		mem/my_calloc_str.c			\
-		mem/my_calloc_nb.c			\
+		mem/my_realloc.c			\
+		mem/my_calloc.c				\
 		nbr/my_compute_factorial_it.c		\
 		nbr/my_compute_factorial_rec.c		\
 		nbr/my_compute_power_it.c		\
@@ -92,7 +90,6 @@ $(NAME): $(OBJ)
 	$(AC) $(NAME) $(OBJ)
 	ranlib $(NAME)
 	mv $(NAME) ..
-	$(CP) include/my.h ../../include
 	$(CP) include/list.h ../../include
 
 clean:

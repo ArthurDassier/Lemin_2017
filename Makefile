@@ -11,7 +11,7 @@ RM	=	rm -rf
 
 CFLAGS	+=	-Wall -Wextra
 
-CPPFLAGS	+=	-I./include
+CPPFLAGS	+=	-I./include -I./lib/my/include
 
 NAME	=	lem_in
 

@@ -10,7 +10,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "printf.h"
 
 // array
 int	my_show_word_array(char * const *);
@@ -28,11 +27,9 @@ int	my_char_is_alphanum(char);
 void	my_free(void *);
 void	*my_malloc(int);
 void	my_memdel(void **);
-void	my_memset(char *, int);
-int	*my_realloc_nb(int *, int);
-char	*my_realloc_str(char *, int);
-char	*my_calloc_str(int);
-int	*my_calloc_nb(int);
+void	*my_realloc(void *, int);
+void	*my_calloc(int);
+void	my_memset(void *, int);
 
 // nbr
 int	my_compute_factorial_it(int);
