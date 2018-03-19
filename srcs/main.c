@@ -8,7 +8,7 @@
 
 int main(int ac, char **av)
 {	
-	graph_t	*graph = create_graph(5);
+	t_graph	*graph = create_graph(5);
 
 	(void)ac;
 	(void)av;

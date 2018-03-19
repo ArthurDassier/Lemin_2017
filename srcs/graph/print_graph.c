@@ -7,9 +7,9 @@
 #include "graph.h"
 
 // A utility function to print the adjacenncy list representation of graph
-void print_graph(graph_t *graph)
+void print_graph(t_graph *graph)
 {
-	adj_node_t	*crawl;
+	t_adj_node	*crawl;
 
 	for (int i = 0; i < graph->vertices; ++i) {
 		crawl = graph->array[i].head;
