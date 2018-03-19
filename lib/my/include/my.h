@@ -30,6 +30,7 @@ void	my_memdel(void **);
 void	*my_realloc(void *, int);
 void	*my_calloc(int);
 void	my_memset(void *, int);
+void	my_memcpy(void *, void *, size_t);
 
 // nbr
 int	my_compute_factorial_it(int);

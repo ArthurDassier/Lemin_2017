@@ -13,7 +13,7 @@ void	*my_realloc(void *data, int size)
 	new = malloc(sizeof(char) * (size));
 	if (new == NULL)
 		return (NULL);
-	my_strcpy(new, (char *)data);
+	my_memcpy(data, new, size);
 	my_free(data);
 	return (new);
 }

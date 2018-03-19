@@ -9,6 +9,6 @@
 #define LEMIN_H_
 
 #include "my.h"
-
+#include "list.h"
 
 #endif /* !LEMIN_H_ */

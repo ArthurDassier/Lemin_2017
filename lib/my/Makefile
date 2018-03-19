@@ -28,6 +28,7 @@ SRCS =		array/my_show_word_array.c 		\
 		mem/my_memset.c				\
 		mem/my_realloc.c			\
 		mem/my_calloc.c				\
+		mem/my_memcpy.c				\
 		nbr/my_compute_factorial_it.c		\
 		nbr/my_compute_factorial_rec.c		\
 		nbr/my_compute_power_it.c		\
