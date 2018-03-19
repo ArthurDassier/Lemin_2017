@@ -12,7 +12,8 @@ int main(int ac, char **av)
 
 	(void)ac;
 	(void)av;
-	recup_anthill();
+	t_tunnels *tun = malloc(sizeof(t_tunnels));
+	recup_anthill(tun, 4);
 	/*add_edge(graph, 0, 1);
 	add_edge(graph, 0, 4);
 	add_edge(graph, 1, 2);

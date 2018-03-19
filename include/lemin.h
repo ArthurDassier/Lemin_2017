@@ -27,6 +27,6 @@ typedef struct s_tunnels
 	char	**names;
 } t_tunnels;
 
-int recup_anthill(void);
+t_room **recup_anthill(t_tunnels *tunnels, int nb_rm);
 
 #endif /* !LEMIN_H_ */
