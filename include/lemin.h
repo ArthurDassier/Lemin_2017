@@ -15,13 +15,12 @@
 typedef struct s_room
 {
 	int	ant;
-	char	*name;
+	int	nb_room;
 	int	x;
 	int	y;
-	char	**tunnels;
 	int	type;
 } t_room;
 
-t_graph *gen_graph(int **);
+t_graph *gen_graph(t_room **);
 
 #endif /* !LEMIN_H_ */
