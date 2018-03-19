@@ -22,4 +22,6 @@ typedef struct s_room
 	int	type;
 } t_room;
 
+t_graph *gen_graph(int **);
+
 #endif /* !LEMIN_H_ */
