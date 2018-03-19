@@ -18,8 +18,16 @@ CPPFLAGS	+=	-I./include -I./lib/my/include
 NAME	=	lem_in
 
 SRCS	=	srcs/main.c			\
+		srcs/graph/add_edge.c		\
+		srcs/graph/add_node_list.c	\
+		srcs/graph/create_graph.c	\
+		srcs/graph/print_graph.c
 
-SRCS_UT	=
+SRCS_UT	=	srcs/graph/add_edge.c		\
+		srcs/graph/add_node_list.c	\
+		srcs/graph/create_graph.c	\
+		srcs/graph/print_graph.c
+
 
 SRCS_TESTS=	tests/test_my_printf.c			\
 		tests/lib/test_my_strcat.c		\
