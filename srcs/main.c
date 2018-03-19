@@ -6,8 +6,9 @@
 */
 #include "lemin.h"
 
-int main()
+int main(int ac, char **av)
 {
-	my_printf("Test\n");
+	(void)ac;
+	(void)av;
 	return (0);
 }
