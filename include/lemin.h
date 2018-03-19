@@ -12,4 +12,14 @@
 #include "list.h"
 #include "graph.h"
 
+typedef struct s_room
+{
+	int	ant;
+	char	*name;
+	int	x;
+	int	y;
+	char	**tunnels;
+	int	type;
+} t_room;
+
 #endif /* !LEMIN_H_ */
