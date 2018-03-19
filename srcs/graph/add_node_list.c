@@ -7,10 +7,10 @@
 #include "graph.h"
 
 // A utility function to create a new adjacency list node
-struct adj_node_t*	add_node_list(int dest)
+t_adj_node	*add_node_list(int dest)
 {
 	t_adj_node *new_node =
-	(t_adj_node*) malloc(sizeof(t_adj_node));
+	(t_adj_node *) malloc(sizeof(t_adj_node));
 
 	if (new_node == NULL)
 		return (NULL);

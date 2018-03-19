@@ -9,7 +9,7 @@
 // Adds an edge to an undirected graph
 void add_edge(t_graph *graph, int src, int dest)
 {
-	t_adj_node* new_node = add_node_list(dest);
+	t_adj_node *new_node = add_node_list(dest);
 
 	new_node->next = graph->array[src].head;
 	graph->array[src].head = new_node;
