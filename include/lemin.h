@@ -15,11 +15,18 @@
 typedef struct s_room
 {
 	int	ant;
-	char	*name;
+	int	nb_room;
 	int	x;
 	int	y;
-	char	**tunnels;
 	int	type;
 } t_room;
+
+typedef struct s_tunnels
+{
+	int	**tunnels;
+	char	**names;
+} t_tunnels;
+
+int recup_anthill(void);
 
 #endif /* !LEMIN_H_ */
