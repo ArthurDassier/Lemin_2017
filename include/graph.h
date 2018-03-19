@@ -10,30 +10,30 @@
 #include "my.h"
 
 // A structure to represent an adjacency list node
-typedef struct	adj_node_s
+typedef struct	s_adj_node
 {
-	int	dest;
-	struct	adj_node_s *next;
-}		adj_node_t;
+	int			dest;
+	struct	s_adj_node	*next;
+}		t_adj_node;
 
 // A structure to represent an adjacency list
-typedef struct	adj_list_s
+typedef struct	s_adj_list
 {
-	adj_node_t	*head;
-}		adj_list_t;
+	t_adj_node	*head;
+}		t_adj_list;
 
 // A structure to represent a graph. A graph is an array of adjacency lists.
 // Size of array will be vertices (number of vertices in graph)
-typedef struct	graph_s
+typedef struct	s_graph
 {
 	int		vertices;
-	adj_list_t	*array;
-}		graph_t;
+	t_adj_list	*array;
+}		t_graph;
 
-void add_edge(graph_t *graph, int src, int dest);
-void print_graph(graph_t *graph);
-void print_graph(graph_t *graph);
-graph_t	*create_graph(int vertices);
-struct adj_node_t*	add_node_list(int dest);
+void			add_edge(t_graph *graph, int, int);
+void			print_graph(t_graph *);
+void			print_graph(t_graph *);
+t_graph			*create_graph(int);
+struct adj_node_t*	add_node_list(int);
 
 #endif /* !GRAPH_H_ */

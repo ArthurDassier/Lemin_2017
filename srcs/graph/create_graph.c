@@ -7,17 +7,16 @@
 #include "graph.h"
 
 // A utility function that creates a graph of V vertices
-graph_t	*create_graph(int vertices)
+t_graph	*create_graph(int vertices)
 {
-	graph_t	*graph = (graph_t *) malloc(sizeof(graph_t));
+	t_graph	*graph = (t_graph *) malloc(sizeof(t_graph));
 
 	if (graph == NULL)
 		return (NULL);
 	graph->vertices = vertices;
-	graph->array = (adj_list_t *) malloc(vertices * sizeof(adj_list_t));
+	graph->array = (t_adj_list *) malloc(vertices * sizeof(t_adj_list));
 	int i;
 	for (i = 0; i < vertices; ++i)
 	graph->array[i].head = NULL;
-
 	return (graph);
 }
