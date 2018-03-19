@@ -10,5 +10,6 @@
 
 #include "my.h"
 #include "list.h"
+#include "graph.h"
 
 #endif /* !LEMIN_H_ */
