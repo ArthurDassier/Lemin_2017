@@ -74,12 +74,13 @@ int recup_anthill(t_infos *infos, int nb_rm)
 	while ((read = getline(&line, &len, fd)) != -1) {
 		if (analyse_command(line, &type_next_room) == 0) {
 			if (found_tunnels(line) == 1) {
-				fuel_tunnel(line);
+				fuel_tunnel(my_str_to_wordtab_delim(line, "-"), infos, j);
 				++j;
 			} else if (init_anthill(line, infos, i, &type_next_room) == FAILURE)
 				return (FAILURE);
 			++i;
 		}
 	}
+	fuel_room_name(infos, nb_rm);
 	return (SUCCESS);
 }

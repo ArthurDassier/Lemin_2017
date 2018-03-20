@@ -35,5 +35,7 @@ typedef struct s_infos
 
 int recup_anthill(t_infos *, int);
 t_graph *gen_graph(t_room **);
+void fuel_tunnel(char **line, t_infos *infos, int j);
+int found_tunnels(char *line);
 
 #endif /* !LEMIN_H_ */
