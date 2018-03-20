@@ -70,6 +70,7 @@ int recup_anthill(t_infos *infos, int nb_rm)
 	int	i = -1;
 	int	j = 0;
 	infos->rooms = malloc(sizeof(t_room) * nb_rm);
+	infos->tunnels->tunnels = malloc(sizeof(int *) * 5);
 
 	while ((read = getline(&line, &len, fd)) != -1) {
 		if (analyse_command(line, &type_next_room) == 0) {

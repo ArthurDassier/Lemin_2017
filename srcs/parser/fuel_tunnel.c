@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** fuel_tunnel.c
+** File description:
+** Arthur
+*/
+
 #include "lemin.h"
 #include "define.h"
 #include <stdio.h>
@@ -6,8 +13,12 @@ void fuel_room_name(t_infos *infos, int nb_rm)
 {
 	int	i = 0;
 
-	infos->tunnels->name = malloc(sizeof(char*) * nb_rm)
-	while ()
+	infos->tunnels->names = malloc(sizeof(char *) * nb_rm);
+	while (infos->rooms[i]) {
+		infos->tunnels->names[i] = malloc(sizeof(char) * nb_rm);
+		infos->tunnels->names[i] = my_itoa(infos->rooms[i]->nb_room);
+		++i;
+	}
 }
 
 int found_tunnels(char *line)
