@@ -13,6 +13,8 @@ t_room *fill_rooms(char **tab, int *type, int nb_ants)
 {
 	t_room	*rooms = malloc(sizeof(t_room));
 
+	if (rooms == NULL)
+		return (NULL);
 	if (*type == 1)
 		rooms->ant = nb_ants;
 	else
@@ -25,7 +27,7 @@ t_room *fill_rooms(char **tab, int *type, int nb_ants)
 	return (rooms);
 }
 
-int handle_command(char *line)
+int command(char *line)
 {
 	if (line[2] == 's') {
 		return (1);
@@ -33,49 +35,53 @@ int handle_command(char *line)
 		return (2);
 }
 
-static int analyse_commentary(char *line)
+int analyse_command(char *line, int *type_next_room)
 {
 	if (line[0] == '#') {
 		if (line[1] == '#') {
-			return (handle_command(line));
+			*type_next_room = command(line);
 		}
-		return (-1);
+		return (1);
 	}
 	return (0);
 }
 
-static void init_anthill(char *line, t_tunnels *tunnels, t_room **rooms, int *i)
+static int init_anthill(char *line, t_infos *infos, int i, int *type)
 {
-	static int	type = 0;
-	static int	nb_ants = -1;
+	static int	nb_ants = 0;
 
-	printf(">>%d\n", type);
-	(void) tunnels;
-	if ((type = analyse_commentary(line)) != 0) {
-		*i -= 1;
-		return;
-	}
-	if (nb_ants == -1) {
+	if (nb_ants == 0) {
 		nb_ants = my_getnbr(line);
-		*i -= 1;
-		return;
+		return (SUCCESS);
 	}
-	rooms[*i] = fill_rooms(my_str_to_wordtab_delim(line, " "), &type, nb_ants);
+	infos->rooms[i] = fill_rooms(my_str_to_wordtab_delim(line, " "), type, nb_ants);
+	if (infos->rooms[i] == NULL)
+		return (FAILURE);
+	return (SUCCESS);
 }
 
-t_room **recup_anthill(t_tunnels *tunnels, int nb_rm)
+int recup_anthill(t_infos *infos, int nb_rm)
 {
 	FILE	*fd = stdin;
-	int	i = 0;
 	char	*line = NULL;
 	size_t	len = 0;
 	int	read = 0;
-	t_room **rooms = malloc(sizeof(t_room) * nb_rm);
+	int	type_next_room = 0;
+	int	i = -1;
+	int	j = 0;
+	infos->rooms = malloc(sizeof(t_room) * nb_rm);
+	infos->tunnels->tunnels = malloc(sizeof(int *) * 5);
 
-	(void) tunnels;
 	while ((read = getline(&line, &len, fd)) != -1) {
-		init_anthill(line, tunnels, rooms, &i);
-		++i;
+		if (analyse_command(line, &type_next_room) == 0) {
+			if (found_tunnels(line) == 1) {
+				fuel_tunnel(my_str_to_wordtab_delim(line, "-"), infos, j);
+				++j;
+			} else if (init_anthill(line, infos, i, &type_next_room) == FAILURE)
+				return (FAILURE);
+			++i;
+		}
 	}
-	return (rooms);
+	fuel_room_name(infos, nb_rm);
+	return (SUCCESS);
 }
