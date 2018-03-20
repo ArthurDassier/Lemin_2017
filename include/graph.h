@@ -13,6 +13,7 @@
 typedef struct	s_adj_node
 {
 	int			dest;
+	void			*data;
 	struct	s_adj_node	*next;
 }		t_adj_node;
 

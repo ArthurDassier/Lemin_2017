@@ -17,6 +17,6 @@ t_graph	*create_graph(int vertices)
 	graph->vertices = vertices;
 	graph->array = (t_adj_list *) malloc(vertices * sizeof(t_adj_list));
 	for (i = 0; i < vertices; ++i)
-	graph->array[i].head = NULL;
+		graph->array[i].head = NULL;
 	return (graph);
 }

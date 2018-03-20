@@ -21,6 +21,7 @@ typedef struct s_room
 	int	type;
 } t_room;
 
+<<<<<<< HEAD
 typedef struct s_tunnels
 {
 	int	**tunnels;
@@ -28,5 +29,8 @@ typedef struct s_tunnels
 } t_tunnels;
 
 t_room **recup_anthill(t_tunnels *tunnels, int nb_rm);
+=======
+t_graph *gen_graph(t_room **);
+>>>>>>> origin/master
 
 #endif /* !LEMIN_H_ */
