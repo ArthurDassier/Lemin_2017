@@ -7,10 +7,6 @@
 #include "lemin.h"
 
 int main(int ac, char **av)
-<<<<<<< HEAD
-{
-=======
-<<<<<<< HEAD
 {
 	//t_graph	*graph = create_graph(5);
 
@@ -31,14 +27,10 @@ int main(int ac, char **av)
 	add_edge(graph, 2, 3);
 	add_edge(graph, 3, 4);
 	print_graph(graph);*/
-=======
-{	
->>>>>>> c684d7a966fd43774ba1c4fad5c0e862e8f77e67
 //	t_graph	*graph = gen_graph(tunnels);
 
 	(void)ac;
 	(void)av;
 //	print_graph(graph);
->>>>>>> origin/master
 	return (0);
 }
