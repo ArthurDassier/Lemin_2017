@@ -25,7 +25,7 @@ static void remp_rooms_info(t_graph *graph, t_room **room)
 
 	while (room[i]) {
 		nb = room[i]->nb_room;
-//		tmp = graph->array[nb].head;
+		tmp = graph->array[nb].head;
 		tmp_room = (t_room *)tmp->data;
 		tmp_room->ant = room[i]->ant;
 		tmp_room->x = room[i]->x;
