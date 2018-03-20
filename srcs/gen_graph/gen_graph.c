@@ -7,11 +7,11 @@
 
 #include "lemin.h"
 
-static int find_nb_tunnels(int **tunnels)
+static int find_nb_vertices(char **names)
 {
 	int	i = 0;
 
-	while (tunnels[i])
+	while (names[i])
 		++i;
 	return (i);
 }
@@ -38,8 +38,8 @@ static void remp_rooms_info(t_graph *graph, t_room **room)
 
 t_graph	*gen_graph(t_room **info)
 {
-	t_graph	*graph = create_graph(3);
-	int	i = 0;
+	t_graph		*graph = create_graph(3);
+	int		i = 0;
 
 	int tunnels[3][2] = {
 		{0, 1},

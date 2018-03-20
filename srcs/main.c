@@ -4,14 +4,11 @@
 ** File description:
 ** main function
 */
-
-#include <stdio.h>
 #include "lemin.h"
-#include "define.h"
 
 int main(int ac, char **av)
 {
-	//t_graph	*graph = create_graph(5);
+	t_graph	*graph = create_graph(5);
 
 	(void)ac;
 	(void)av;
@@ -27,10 +24,8 @@ int main(int ac, char **av)
 	add_edge(graph, 1, 4);
 	add_edge(graph, 2, 3);
 	add_edge(graph, 3, 4);
-	print_graph(graph);*/
-//	t_graph	*graph = gen_graph(tunnels);
-	(void)ac;
-	(void)av;
-//	print_graph(graph);
+	add_edge(graph, 4, 3);
+	add_edge(graph, 2, 1);
+	print_graph(graph);
 	return (0);
 }
