@@ -18,8 +18,8 @@ static int find_nb_vertices(char **names)
 
 static void remp_rooms_info(t_graph *graph, t_room **room)
 {
-	t_room		*tmp_room;
-	t_adj_node	*tmp;
+	t_room		*tmp_room = NULL;
+	t_adj_node	*tmp = NULL;
 	int		i = 0;
 	int		nb = 0;
 
@@ -36,20 +36,17 @@ static void remp_rooms_info(t_graph *graph, t_room **room)
 	}
 }
 
-t_graph	*gen_graph(t_room **info)
+t_graph	*gen_graph(t_infos *infos)
 {
-	t_graph		*graph = create_graph(3);
+	t_graph		*graph =
+	create_graph(find_nb_vertices(infos->tunnels->names));
 	int		i = 0;
 
-	int tunnels[3][2] = {
-		{0, 1},
-		{2, 3},
-		{2, 1}
-	};
-	while (tunnels[i]) {
-		add_edge(graph, tunnels[i][0], tunnels[i][1]);
+	while (infos->tunnels->tunnels[i]) {
+		add_edge(graph, infos->tunnels->tunnels[i][0],
+		infos->tunnels->tunnels[i][1]);
 		++i;
 	}
-	remp_rooms_info(graph, info);
+//	remp_rooms_info(graph, infos->rooms);
 	return (graph);
 }
