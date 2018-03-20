@@ -8,7 +8,7 @@
 #ifndef DEFINE_H_
 #define DEFINE_H_
 
-#define FAILURE 84;
-#define SUCCESS 0;
+#define FAILURE 84
+#define SUCCESS 0
 
 #endif /* !DEFINE_H_ */
