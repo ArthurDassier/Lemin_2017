@@ -13,8 +13,6 @@ t_room *fill_rooms(char **tab, int *type, int nb_ants)
 {
 	t_room	*rooms = malloc(sizeof(t_room));
 
-	if (rooms == NULL)
-		return (NULL);
 	if (*type == 1)
 		rooms->ant = nb_ants;
 	else
@@ -27,7 +25,7 @@ t_room *fill_rooms(char **tab, int *type, int nb_ants)
 	return (rooms);
 }
 
-int command(char *line)
+int handle_command(char *line)
 {
 	if (line[2] == 's') {
 		return (1);
@@ -35,51 +33,49 @@ int command(char *line)
 		return (2);
 }
 
-int analyse_command(char *line, int *type_next_room)
+static int analyse_commentary(char *line)
 {
 	if (line[0] == '#') {
 		if (line[1] == '#') {
-			*type_next_room = command(line);
+			return (handle_command(line));
 		}
-		return (1);
+		return (-1);
 	}
 	return (0);
 }
 
-static int init_anthill(char *line, t_infos *infos, int i, int *type)
+static void init_anthill(char *line, t_tunnels *tunnels, t_room **rooms, int *i)
 {
-	static int	nb_ants = 0;
+	static int	type = 0;
+	static int	nb_ants = -1;
 
-	if (nb_ants == 0) {
-		nb_ants = my_getnbr(line);
-		return (SUCCESS);
+	printf(">>%d\n", type);
+	(void) tunnels;
+	if ((type = analyse_commentary(line)) != 0) {
+		*i -= 1;
+		return;
 	}
-	infos->rooms[i] = fill_rooms(my_str_to_wordtab_delim(line, " "), type, nb_ants);
-	if (infos->rooms[i] == NULL)
-		return (FAILURE);
-	return (SUCCESS);
+	if (nb_ants == -1) {
+		nb_ants = my_getnbr(line);
+		*i -= 1;
+		return;
+	}
+	rooms[*i] = fill_rooms(my_str_to_wordtab_delim(line, " "), &type, nb_ants);
 }
 
-int recup_anthill(t_infos *infos, int nb_rm)
+t_room **recup_anthill(t_tunnels *tunnels, int nb_rm)
 {
 	FILE	*fd = stdin;
+	int	i = 0;
 	char	*line = NULL;
 	size_t	len = 0;
 	int	read = 0;
-	int	type_next_room = 0;
-	int	i = -1;
-	int	j = 0;
-	infos->rooms = malloc(sizeof(t_room) * nb_rm);
+	t_room **rooms = malloc(sizeof(t_room) * nb_rm);
 
+	(void) tunnels;
 	while ((read = getline(&line, &len, fd)) != -1) {
-		if (analyse_command(line, &type_next_room) == 0) {
-			if (found_tunnels(line) == 1) {
-				fuel_tunnel(line);
-				++j;
-			} else if (init_anthill(line, infos, i, &type_next_room) == FAILURE)
-				return (FAILURE);
-			++i;
-		}
+		init_anthill(line, tunnels, rooms, &i);
+		++i;
 	}
-	return (SUCCESS);
+	return (rooms);
 }
