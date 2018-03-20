@@ -7,11 +7,11 @@
 
 #include "lemin.h"
 
-static int find_nb_tunnels(int **tunnels)
+static int find_nb_vertices(char **names)
 {
 	int	i = 0;
 
-	while (tunnels[i])
+	while (names[i])
 		++i;
 	return (i);
 }
