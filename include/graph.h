@@ -34,7 +34,7 @@ typedef struct	s_graph
 }		t_graph;
 
 void			add_edge(t_graph *graph, int, int);
-void			print_graph(t_graph *);
+//void print_graph(t_graph *graph);
 t_graph			*create_graph(int);
 t_adj_node*	add_node_list(int);
 
