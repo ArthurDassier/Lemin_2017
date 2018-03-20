@@ -28,6 +28,10 @@ typedef struct s_tunnels
 } t_tunnels;
 
 t_room **recup_anthill(t_tunnels *tunnels, int nb_rm);
+// Parser
+t_room **recup_anthill(t_tunnels *, int);
+
+// Algorithm
 t_graph *gen_graph(t_room **);
 
 #endif /* !LEMIN_H_ */
