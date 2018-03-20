@@ -16,5 +16,6 @@ t_adj_node	*add_node_list(int dest)
 		return (NULL);
 	new_node->dest = dest;
 	new_node->next = NULL;
+	new_node->prev = NULL;
 	return (new_node);
 }

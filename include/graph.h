@@ -15,6 +15,8 @@ typedef struct	s_adj_node
 	int			dest;
 	void			*data;
 	struct	s_adj_node	*next;
+	struct	s_adj_node	*head;
+	struct	s_adj_node	*prev;
 }		t_adj_node;
 
 // A structure to represent an adjacency list
@@ -28,7 +30,7 @@ typedef struct	s_adj_list
 typedef struct	s_graph
 {
 	int		vertices;
-	t_adj_list	*array;
+	t_adj_node	*array;
 }		t_graph;
 
 void			add_edge(t_graph *graph, int, int);
