@@ -19,27 +19,6 @@ int main(int ac, char **av)
 	infos->tunnels = malloc(sizeof(t_tunnels));
 	if (recup_anthill(infos, 4) == FAILURE)
 		return (FAILURE);
-	printf("%d\n", infos->rooms[0]->type);
-	printf("%d\n", infos->rooms[1]->type);
-	printf("%d\n", infos->rooms[2]->type);
-	printf("%d\n", infos->rooms[3]->type);
-	/*add_edge(graph, 0, 1);
-	add_edge(graph, 0, 4);
-	add_edge(graph, 1, 2);
-	add_edge(graph, 1, 3);
-	add_edge(graph, 1, 4);
-	add_edge(graph, 2, 3);
-	add_edge(graph, 3, 4);
-<<<<<<< HEAD
-	add_edge(graph, 4, 3);
-	add_edge(graph, 2, 1);
 	print_graph(graph);
-=======
-	print_graph(graph);*/
-//	t_graph	*graph = gen_graph(tunnels);
-	(void)ac;
-	(void)av;
-//	print_graph(graph);
->>>>>>> origin
 	return (0);
 }

@@ -5,8 +5,9 @@
 ** print_graph
 */
 #include "graph.h"
-/*
-// A utility function to print the adjacenncy list representation of graph
+
+//A utility function to print the adjacenncy list representation of graph
+
 void print_graph(t_graph *graph)
 {
 	t_adj_node	*crawl;
@@ -20,4 +21,4 @@ void print_graph(t_graph *graph)
 		}
 		my_printf("\n");
 	}
-}*/
+}
