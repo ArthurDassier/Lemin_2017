@@ -27,10 +27,13 @@ typedef struct s_tunnels
 	char	**names;
 } t_tunnels;
 
-// Parser
-t_room **recup_anthill(t_tunnels *, int);
+typedef struct s_infos
+{
+	t_room		**rooms;
+	t_tunnels	*tunnels;
+} t_infos;
 
-// Algorithm
+int recup_anthill(t_infos *, int);
 t_graph *gen_graph(t_room **);
 
 #endif /* !LEMIN_H_ */
