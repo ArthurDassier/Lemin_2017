@@ -17,8 +17,6 @@ t_room *fill_rooms(char **tab, int *type, int nb_ants)
 		rooms->ant = nb_ants;
 	else
 		rooms->ant = 0;
-	for (int i = 0; tab[i]; ++i)
-		printf("%s\n", tab[i]);
 	rooms->nb_room = my_getnbr(tab[0]);
 	rooms->x = my_getnbr(tab[1]);
 	rooms->y = my_getnbr(tab[2]);
@@ -29,7 +27,7 @@ t_room *fill_rooms(char **tab, int *type, int nb_ants)
 
 int handle_command(char *line)
 {
-	if (line[3] == 's') {
+	if (line[2] == 's') {
 		return (1);
 	} else
 		return (2);
@@ -51,6 +49,7 @@ static void init_anthill(char *line, t_tunnels *tunnels, t_room **rooms, int *i)
 	static int	type = 0;
 	static int	nb_ants = -1;
 
+	printf(">>%d\n", type);
 	(void) tunnels;
 	if ((type = analyse_commentary(line)) != 0) {
 		*i -= 1;
