@@ -8,10 +8,16 @@
 
 int main(int ac, char **av)
 {
-	t_graph	*graph = gen_graph(tunnels);
+	t_graph	*graph = create_graph(5);
 
 	(void)ac;
 	(void)av;
+	add_edge(graph, 0, 1);
+	add_edge(graph, 0, 2);
+	add_edge(graph, 1, 3);
+	add_edge(graph, 1, 4);
+	add_edge(graph, 4, 3);
+	add_edge(graph, 2, 1);
 	print_graph(graph);
 	return (0);
 }

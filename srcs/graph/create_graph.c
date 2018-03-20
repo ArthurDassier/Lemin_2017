@@ -14,10 +14,12 @@ t_graph	*create_graph(int vertices)
 	if (graph == NULL)
 		return (NULL);
 	graph->vertices = vertices;
-	graph->array = (t_adj_list *) malloc(vertices * sizeof(t_adj_list));
+	graph->array = (t_adj_node *) malloc(vertices * sizeof(t_adj_node));
 	if (graph->array == NULL)
 		return (NULL);
-	for (int i = 0; i < vertices; ++i)
+	for (int i = 0; i < vertices; ++i) {
 		graph->array[i].head = NULL;
+		graph->array[i].prev = NULL;
+	}
 	return (graph);
 }

@@ -21,6 +21,16 @@ typedef struct s_room
 	int	type;
 } t_room;
 
+typedef struct s_tunnels
+{
+	int	**tunnels;
+	char	**names;
+} t_tunnels;
+
+// Parser
+t_room **recup_anthill(t_tunnels *, int);
+
+// Algorithm
 t_graph *gen_graph(t_room **);
 
 #endif /* !LEMIN_H_ */
