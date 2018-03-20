@@ -4,12 +4,13 @@
 ** File description:
 ** print_graph
 */
-#include "graph.h"
+#include "lemin.h"
 
 // A utility function to print the adjacenncy list representation of graph
 void print_graph(t_graph *graph)
 {
 	t_adj_node	*crawl;
+	t_room		*tmp = NULL;
 
 	for (int i = 0; i < graph->vertices; ++i) {
 		crawl = graph->array[i].head;
@@ -18,6 +19,11 @@ void print_graph(t_graph *graph)
 			my_printf("-> %d", crawl->dest);
 			crawl = crawl->next;
 		}
-		my_printf("\n");
+		tmp = (t_room *)graph->array[i].head->data;
+		my_printf("\n ant	 ==> %d\n", tmp->ant);
+		my_printf(" nb_room ==> %d\n", tmp->nb_room);
+		my_printf(" type	 ==> %d\n", tmp->type);
+		my_printf(" pos_x	 ==> %d\n", tmp->x);
+		my_printf(" pos_y	 ==> %d\n", tmp->y);
 	}
 }
