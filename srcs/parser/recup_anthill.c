@@ -19,7 +19,9 @@ static t_room *fill_rooms(char **tab, int *type, int nb_ants)
 		rooms->ant = nb_ants;
 	else
 		rooms->ant = 0;
-	rooms->nb_room = my_getnbr(tab[0]);
+	if (check_params(tab) == FAILURE)
+		return (NULL);
+	rooms->name_room = tab[0];
 	rooms->x = my_getnbr(tab[1]);
 	rooms->y = my_getnbr(tab[2]);
 	rooms->type = *type;
@@ -33,6 +35,8 @@ static int init_anthill(char *line, t_infos *infos, int i, int *type)
 
 	if (nb_ants == 0) {
 		nb_ants = my_getnbr(line);
+		if (nb_ants <= 0)
+			return (FAILURE);
 		return (SUCCESS);
 	}
 	infos->rooms[i] = fill_rooms(my_str_to_wordtab_delim(line, " "),
@@ -43,18 +47,26 @@ static int init_anthill(char *line, t_infos *infos, int i, int *type)
 	return (SUCCESS);
 }
 
-static int load_file(char *line, t_infos *inf, int *next_room, int *j)
+static int tunnel_or_room(char *ln, t_infos *inf, int *next_room, int *j)
 {
 	static int	i = -1;
 
-	if (analyse_command(line, next_room) == 0) {
-		if (found_tunnels(line) == 1) {
-			fuel_tnl(my_str_to_wordtab_delim(line, "-"), inf, *j);
-			++*j;
-		} else if (init_anthill(line, inf, i, next_room) == FAILURE)
+	if (found_tunnels(ln) == 1) {
+		if (fuel_tnl(my_str_to_wordtab_delim(ln, "-"), inf, *j) == 84)
 			return (FAILURE);
-		++i;
-	}
+		++*j;
+	} else if (init_anthill(ln, inf, i, next_room) == FAILURE)
+		return (FAILURE);
+	++i;
+	return (SUCCESS);
+}
+
+static int load_file(char *line, t_infos *inf, int *next_room, int *j)
+{
+
+	if (analyse_command(line, next_room) == 0)
+		if (tunnel_or_room(line, inf, next_room, j) == FAILURE)
+			return (FAILURE);
 	return (SUCCESS);
 }
 
@@ -68,8 +80,8 @@ int recup_anthill(t_infos *infos, int nb_rm)
 	int	j = 0;
 
 	infos->rooms = malloc(sizeof(t_room) * nb_rm);
-	infos->tunnels->tunnels = malloc(sizeof(int *) * nb_rm);
-	if (infos->rooms == NULL || infos->tunnels->tunnels == NULL)
+	infos->tunnels->tab_tunnels = malloc(sizeof(int *) * nb_rm);
+	if (infos->rooms == NULL || infos->tunnels->tab_tunnels == NULL)
 		return (FAILURE);
 	while ((read = getline(&line, &len, fd)) != -1)
 		if (load_file(line, infos, &type_next_room, &j) == FAILURE)
