@@ -7,25 +7,26 @@
 
 #include "lemin.h"
 
-static int find_nb_tunnels(int **tunnels)
+static int find_nb_vertices(char **names)
 {
 	int	i = 0;
 
-	while (tunnels[i])
+	while (names[i])
 		++i;
 	return (i);
 }
 
 static void remp_rooms_info(t_graph *graph, t_room **room)
 {
-	t_room		*tmp_room;
-	t_adj_node	*tmp;
+	t_room		*tmp_room = NULL;
+	t_adj_node	*tmp = NULL;
 	int		i = 0;
 	int		nb = 0;
 
 	while (room[i]) {
 		nb = room[i]->nb_room;
-//		tmp = graph->array[nb].head;
+		tmp = graph->array[nb].head;
+		graph->array[nb].head->data = malloc(sizeof(t_room));
 		tmp_room = (t_room *)tmp->data;
 		tmp_room->ant = room[i]->ant;
 		tmp_room->x = room[i]->x;
@@ -36,20 +37,20 @@ static void remp_rooms_info(t_graph *graph, t_room **room)
 	}
 }
 
-t_graph	*gen_graph(t_room **info)
+t_graph	*gen_graph(t_infos *infos)
 {
-	t_graph	*graph = create_graph(3);
-	int	i = 0;
+	t_graph		*graph =
+	create_graph(find_nb_vertices(infos->tunnels->names));
+	int		i = 0;
 
-	int tunnels[3][2] = {
-		{0, 1},
-		{2, 3},
-		{2, 1}
-	};
-	while (tunnels[i]) {
-		add_edge(graph, tunnels[i][0], tunnels[i][1]);
+	while (infos->tunnels->tunnels[i]) {
+		add_edge(graph, infos->tunnels->tunnels[i][0],
+		infos->tunnels->tunnels[i][1]);
 		++i;
 	}
-	remp_rooms_info(graph, info);
+	remp_rooms_info(graph, infos->rooms);
+	free(infos);
+	free(infos->tunnels);
+	free(infos->rooms);
 	return (graph);
 }

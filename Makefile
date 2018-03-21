@@ -22,9 +22,10 @@ SRCS	=	srcs/main.c			\
 		srcs/graph/add_node_list.c	\
 		srcs/lemin/find_node.c		\
 		srcs/graph/create_graph.c	\
+		srcs/graph/print_graph.c	\
 		srcs/parser/recup_anthill.c	\
+		srcs/parser/fuel_tunnel.c	\
 		srcs/gen_graph/gen_graph.c	\
-		srcs/graph/print_graph.c
 
 SRCS_UT	=	srcs/graph/add_edge.c		\
 		srcs/graph/add_node_list.c	\
@@ -32,7 +33,6 @@ SRCS_UT	=	srcs/graph/add_edge.c		\
 		srcs/graph/print_graph.c	\
 		srcs/parser/recup_anthill.c	\
 		srcs/gen_graph/gen_graph.c	\
-
 
 SRCS_TESTS=	tests/test_my_printf.c			\
 		tests/lib/test_my_strcat.c		\
