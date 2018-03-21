@@ -13,7 +13,6 @@ int main(int ac, char **av)
 	(void)ac;
 	(void)av;
 	add_edge(graph, 0, 1);
-	add_edge(graph, 0, 2);
 	add_edge(graph, 1, 3);
 	add_edge(graph, 1, 4);
 	add_edge(graph, 4, 3);
