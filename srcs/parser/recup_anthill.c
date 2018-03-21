@@ -9,7 +9,7 @@
 #include "define.h"
 #include <stdio.h>
 
-t_room *fill_rooms(char **tab, int *type, int nb_ants)
+static t_room *fill_rooms(char **tab, int *type, int nb_ants)
 {
 	t_room	*rooms = malloc(sizeof(t_room));
 
@@ -39,10 +39,11 @@ static int init_anthill(char *line, t_infos *infos, int i, int *type)
 	type, nb_ants);
 	if (infos->rooms[i] == NULL)
 		return (FAILURE);
+	infos->rooms[i + 1] = NULL;
 	return (SUCCESS);
 }
 
-static int the_while(char *line, t_infos *inf, int *next_room, int *j)
+static int load_file(char *line, t_infos *inf, int *next_room, int *j)
 {
 	static int	i = -1;
 
@@ -67,9 +68,13 @@ int recup_anthill(t_infos *infos, int nb_rm)
 	int	j = 0;
 
 	infos->rooms = malloc(sizeof(t_room) * nb_rm);
-	infos->tunnels->tunnels = malloc(sizeof(int *) * 5);
+	infos->tunnels->tunnels = malloc(sizeof(int *) * nb_rm);
+	if (infos->rooms == NULL || infos->tunnels->tunnels == NULL)
+		return (FAILURE);
 	while ((read = getline(&line, &len, fd)) != -1)
-		the_while(line, infos, &type_next_room, &j);
-	fuel_room_name(infos, nb_rm);
+		if (load_file(line, infos, &type_next_room, &j) == FAILURE)
+			return (FAILURE);
+	if (fuel_room_name(infos, nb_rm) == FAILURE)
+		return (FAILURE);
 	return (SUCCESS);
 }
