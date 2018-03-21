@@ -27,25 +27,6 @@ t_room *fill_rooms(char **tab, int *type, int nb_ants)
 	return (rooms);
 }
 
-int command(char *line)
-{
-	if (line[2] == 's') {
-		return (1);
-	} else
-		return (2);
-}
-
-int analyse_command(char *line, int *type_next_room)
-{
-	if (line[0] == '#') {
-		if (line[1] == '#') {
-			*type_next_room = command(line);
-		}
-		return (1);
-	}
-	return (0);
-}
-
 static int init_anthill(char *line, t_infos *infos, int i, int *type)
 {
 	static int	nb_ants = 0;
@@ -54,9 +35,25 @@ static int init_anthill(char *line, t_infos *infos, int i, int *type)
 		nb_ants = my_getnbr(line);
 		return (SUCCESS);
 	}
-	infos->rooms[i] = fill_rooms(my_str_to_wordtab_delim(line, " "), type, nb_ants);
+	infos->rooms[i] = fill_rooms(my_str_to_wordtab_delim(line, " "),
+	type, nb_ants);
 	if (infos->rooms[i] == NULL)
 		return (FAILURE);
+	return (SUCCESS);
+}
+
+static int the_while(char *line, t_infos *inf, int *next_room, int *j)
+{
+	static int	i = -1;
+
+	if (analyse_command(line, next_room) == 0) {
+		if (found_tunnels(line) == 1) {
+			fuel_tnl(my_str_to_wordtab_delim(line, "-"), inf, *j);
+			++*j;
+		} else if (init_anthill(line, inf, i, next_room) == FAILURE)
+			return (FAILURE);
+		++i;
+	}
 	return (SUCCESS);
 }
 
@@ -67,21 +64,12 @@ int recup_anthill(t_infos *infos, int nb_rm)
 	size_t	len = 0;
 	int	read = 0;
 	int	type_next_room = 0;
-	int	i = -1;
 	int	j = 0;
+
 	infos->rooms = malloc(sizeof(t_room) * nb_rm);
 	infos->tunnels->tunnels = malloc(sizeof(int *) * 5);
-
-	while ((read = getline(&line, &len, fd)) != -1) {
-		if (analyse_command(line, &type_next_room) == 0) {
-			if (found_tunnels(line) == 1) {
-				fuel_tunnel(my_str_to_wordtab_delim(line, "-"), infos, j);
-				++j;
-			} else if (init_anthill(line, infos, i, &type_next_room) == FAILURE)
-				return (FAILURE);
-			++i;
-		}
-	}
+	while ((read = getline(&line, &len, fd)) != -1)
+		the_while(line, infos, &type_next_room, &j);
 	fuel_room_name(infos, nb_rm);
 	return (SUCCESS);
 }
