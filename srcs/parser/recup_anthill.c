@@ -63,7 +63,6 @@ static int tunnel_or_room(char *ln, t_infos *inf, int *next_room, int *j)
 
 static int load_file(char *line, t_infos *inf, int *next_room, int *j)
 {
-
 	if (analyse_command(line, next_room) == 0)
 		if (tunnel_or_room(line, inf, next_room, j) == FAILURE)
 			return (FAILURE);
@@ -86,6 +85,8 @@ int recup_anthill(t_infos *infos, int nb_rm)
 	while ((read = getline(&line, &len, fd)) != -1)
 		if (load_file(line, infos, &type_next_room, &j) == FAILURE)
 			return (FAILURE);
+	if (end_n_start(infos->rooms) == FAILURE)
+		return (FAILURE);
 	if (fuel_room_name(infos, nb_rm) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);

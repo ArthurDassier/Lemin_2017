@@ -40,5 +40,7 @@ int found_tunnels(char *);
 int fuel_room_name(t_infos *, int);
 int analyse_command(char *, int *);
 int check_params(char **);
+int end_n_start(t_room **);
+int check_for_double_names(char **names);
 
 #endif /* !LEMIN_H_ */
