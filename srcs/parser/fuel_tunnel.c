@@ -38,14 +38,37 @@ int found_tunnels(char *line)
 	return (0);
 }
 
+static int look_for_index(char **line, t_infos *infos, int j)
+{
+	int	i = 0;
+	int	room = 0;
+
+	line[1][my_strlen(line[1]) - 1] = '\0';
+	while (infos->rooms[i]) {
+		if (my_strcmp(infos->rooms[i]->name_room, line[0]) == 0) {
+			infos->tunnels->tab_tunnels[j][0] = i;
+			++room;
+		}
+		if (my_strcmp(infos->rooms[i]->name_room, line[1]) == 0) {
+			infos->tunnels->tab_tunnels[j][1] = i;
+			++room;
+		}
+		++i;
+	}
+	if (room != 2)
+		return (FAILURE);
+	infos->tunnels->tab_tunnels[j][2] = -1;
+	return (SUCCESS);
+}
+
 int fuel_tnl(char **line, t_infos *infos, int j)
 {
-	infos->tunnels->tab_tunnels[j] = malloc(sizeof(int) * 2);
+	infos->tunnels->tab_tunnels[j] = malloc(sizeof(int) * 3);
 	if (infos->tunnels->tab_tunnels[j] == NULL)
 		return (FAILURE);
-	if (!line[0] || !line[1])
+	if (!line[0] || !line[1] || line[2])
 		return (FAILURE);
-	infos->tunnels->tab_tunnels[j][0] = my_getnbr(line[0]);
-	infos->tunnels->tab_tunnels[j][1] = my_getnbr(line[1]);
+	if (look_for_index(line, infos, j) == FAILURE)
+		return (FAILURE);
 	return (SUCCESS);
 }
