@@ -5,12 +5,16 @@
 ** Arthur
 */
 
+#include "lemin.h"
+
 static int command(char *line)
 {
-	if (line[2] == 's') {
+	if (my_strcmp(line, "##start\n") == 0)
 		return (1);
-	} else
+	else if (my_strcmp(line, "##end\n") == 0)
 		return (2);
+	else
+		return (0);
 }
 
 int analyse_command(char *line, int *type_next_room)
