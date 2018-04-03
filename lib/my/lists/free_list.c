@@ -7,9 +7,9 @@
 #include "list.h"
 
 //Frees the list.
-void	free_list(struct node *list, void (*ptr)(void *data))
+void	free_list(t_node *list, void (*ptr)(void *data))
 {
-	struct node	*tmp = list;
+	t_node	*tmp = list;
 
 	tmp = tmp->next;
 	while (tmp->next != list) {

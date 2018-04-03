@@ -7,15 +7,14 @@
 #include "graph.h"
 
 // A utility function to create a new adjacency list node
-t_adj_node	*add_node_list(int dest)
-{
-	t_adj_node *new_node =
-	(t_adj_node *) malloc(sizeof(t_adj_node));
+// t_adj_node	*add_node_list(int dest)
+// {
+// 	t_adj_node *new_node =
+// 	(t_adj_node *) malloc(sizeof(t_adj_node));
 
-	if (new_node == NULL)
-		return (NULL);
-	new_node->dest = dest;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	return (new_node);
-}
+// 	if (new_node == NULL)
+// 		return (NULL);
+// 	new_node->dest = dest;
+// 	new_node->next = NULL;
+// 	return (new_node);
+// }

@@ -4,22 +4,17 @@
 ** File description:
 ** create_graph
 */
-#include "graph.h"
+#include "list.h"
+#include "lemin.h"
 
 // A utility function that creates a graph of V vertices
-t_graph	*create_graph(int vertices)
+void	create_graph(t_node **node, int vertices)
 {
-	t_graph	*graph = (t_graph *) malloc(sizeof(t_graph));
+	t_lemin	*lemin;
 
-	if (graph == NULL)
-		return (NULL);
-	graph->vertices = vertices;
-	graph->array = (t_adj_node *) malloc(vertices * sizeof(t_adj_node));
-	if (graph->array == NULL)
-		return (NULL);
 	for (int i = 0; i < vertices; ++i) {
-		graph->array[i].head = NULL;
-		graph->array[i].prev = NULL;
+		lemin = malloc(sizeof(*lemin));
+		lemin->nb_room = i + 1;
+		insert_end(node, lemin);
 	}
-	return (graph);
 }

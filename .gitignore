@@ -2,6 +2,10 @@ norm.rb
 gmin.pl
 algo.txt
 srcs/main.c
+<<<<<<< HEAD
+gmin.pl
+=======
 main.c
 gmin.pl
 norminette.py
+>>>>>>> 295dd2e8821835ab9db99966756db3a38107b65c
