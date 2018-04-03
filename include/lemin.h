@@ -7,10 +7,16 @@
 
 #ifndef LEMIN_H_
 #define LEMIN_H_
-
+#include "define.h"
 #include "my.h"
 #include "list.h"
 #include "graph.h"
+
+typedef struct s_lemin
+{
+	int	nb_room;
+	bool	ant;
+}		t_lemin;
 
 typedef struct s_room
 {
@@ -33,10 +39,15 @@ typedef struct s_infos
 	t_tunnels	*tunnels;
 } t_infos;
 
+void	create_graph(t_node **node, int vertices);
+void	print_list(void *data);
 int recup_anthill(t_infos *, int);
-t_graph *gen_graph(t_infos *);
+void	display_graph(void *);
+//t_graph *gen_graph(t_infos *);
 void fuel_tunnel(char **, t_infos *, int);
 int found_tunnels(char *);
 void fuel_room_name(t_infos *, int);
+void print_graph(t_node *node);
+int	add_edge(t_node *, int, int);
 
 #endif /* !LEMIN_H_ */

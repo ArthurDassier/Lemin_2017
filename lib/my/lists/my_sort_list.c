@@ -7,10 +7,10 @@
 #include "list.h"
 
 //Returns the size of the list.
-static	int get_size_list(struct node *head)
+static	int get_size_list(t_node *head)
 {
 	int		i = 1;
-	struct node	*tmp = head;
+	t_node	*tmp = head;
 
 	if (tmp == NULL)
 		return (0);
@@ -22,7 +22,7 @@ static	int get_size_list(struct node *head)
 }
 
 //Swaps the content of two nodes.
-static	void my_sort_swap(struct node *node_1, struct node *node_2)
+static	void my_sort_swap(t_node *node_1, t_node *node_2)
 {
 	void	*tmp = node_1->data;
 
@@ -32,12 +32,12 @@ static	void my_sort_swap(struct node *node_1, struct node *node_2)
 }
 
 //Bubble sort for linked list.
-void	my_sort_list(struct node *list, int (*ptr)(void *data, void *data_2))
+void	my_sort_list(t_node *list, int (*ptr)(void *data, void *data_2))
 {
 	int		i;
 	int	 	size = get_size_list(list);
 	int		swap = 1;
-	struct node	*tmp;
+	t_node	*tmp;
 
 	while (swap != 0) {
 		swap = 0;

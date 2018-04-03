@@ -5,11 +5,11 @@
 ** displas list
 */
 #include "list.h"
-
+#include <stdio.h>
 //Displays the list.
-void	display_list(struct node *head, void (*ptr)(void *data))
+void	display_list(t_node *head, void (*ptr)(void *data))
 {
-	struct node	*tmp = head;
+	t_node	*tmp = head;
 
 	do {
 		ptr(tmp->data);
@@ -18,9 +18,9 @@ void	display_list(struct node *head, void (*ptr)(void *data))
 }
 
 //Displays the list in reverse order.
-void	display_reverse(struct node *head, void (*ptr)(void *data))
+void	display_reverse(t_node *head, void (*ptr)(void *data))
 {
-	struct node	*tmp = head->prev;
+	t_node	*tmp = head->prev;
 
 	do {
 		ptr(tmp->data);
