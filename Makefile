@@ -17,7 +17,6 @@ CPPFLAGS	+=	-I./include -I./lib/my/include
 
 NAME	=	lem_in
 
-<<<<<<< HEAD
 SRCS	=	srcs/main.c			\
 		srcs/graph/add_edge.c		\
 		srcs/graph/add_node_list.c	\
@@ -34,7 +33,7 @@ SRCS_UT	=	srcs/graph/add_edge.c		\
 		srcs/graph/print_graph.c	\
 		srcs/parser/recup_anthill.c	\
 		srcs/gen_graph/gen_graph.c	\
-=======
+
 SRCS	=	srcs/main.c				\
 		srcs/graph/add_edge.c			\
 		srcs/graph/add_node_list.c		\
@@ -54,7 +53,6 @@ SRCS_UT	=	srcs/graph/add_edge.c			\
 		srcs/parser/analyse_commands.c		\
 		srcs/parser/error_gest/error_gest.c	\
 		#srcs/gen_graph/gen_graph.c		\
->>>>>>> 295dd2e8821835ab9db99966756db3a38107b65c
 
 SRCS_TESTS=	tests/test_my_printf.c			\
 		tests/lib/test_my_strcat.c		\
