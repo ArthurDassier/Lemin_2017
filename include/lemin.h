@@ -15,7 +15,7 @@
 typedef struct s_room
 {
 	int	ant;
-	int	nb_room;
+	char	*name_room;
 	int	x;
 	int	y;
 	int	type;
@@ -23,7 +23,7 @@ typedef struct s_room
 
 typedef struct s_tunnels
 {
-	int	**tunnels;
+	int	**tab_tunnels;
 	char	**names;
 } t_tunnels;
 
@@ -35,8 +35,12 @@ typedef struct s_infos
 
 int recup_anthill(t_infos *, int);
 t_graph *gen_graph(t_infos *);
-void fuel_tunnel(char **, t_infos *, int);
+int fuel_tnl(char **, t_infos *, int);
 int found_tunnels(char *);
-void fuel_room_name(t_infos *, int);
+int fuel_room_name(t_infos *, int);
+int analyse_command(char *, int *);
+int check_params(char **);
+int end_n_start(t_room **);
+int check_for_double_names(char **names);
 
 #endif /* !LEMIN_H_ */

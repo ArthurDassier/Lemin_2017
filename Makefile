@@ -17,21 +17,25 @@ CPPFLAGS	+=	-I./include -I./lib/my/include
 
 NAME	=	lem_in
 
-SRCS	=	srcs/main.c			\
-		srcs/graph/add_edge.c		\
-		srcs/graph/add_node_list.c	\
-		srcs/graph/create_graph.c	\
-		srcs/graph/print_graph.c	\
-		srcs/parser/recup_anthill.c	\
-		srcs/parser/fuel_tunnel.c	\
-		srcs/gen_graph/gen_graph.c	\
+SRCS	=	srcs/main.c				\
+		srcs/graph/add_edge.c			\
+		srcs/graph/add_node_list.c		\
+		srcs/graph/create_graph.c		\
+		srcs/graph/print_graph.c		\
+		srcs/parser/recup_anthill.c		\
+		srcs/parser/fuel_tunnel.c		\
+		srcs/parser/analyse_commands.c		\
+		srcs/parser/error_gest/error_gest.c	\
+	#	srcs/gen_graph/gen_graph.c		\
 
-SRCS_UT	=	srcs/graph/add_edge.c		\
-		srcs/graph/add_node_list.c	\
-		srcs/graph/create_graph.c	\
-		srcs/graph/print_graph.c	\
-		srcs/parser/recup_anthill.c	\
-		srcs/gen_graph/gen_graph.c	\
+SRCS_UT	=	srcs/graph/add_edge.c			\
+		srcs/graph/add_node_list.c		\
+		srcs/graph/create_graph.c		\
+		srcs/graph/print_graph.c		\
+		srcs/parser/recup_anthill.c		\
+		srcs/parser/analyse_commands.c		\
+		srcs/parser/error_gest/error_gest.c	\
+		#srcs/gen_graph/gen_graph.c		\
 
 SRCS_TESTS=	tests/test_my_printf.c			\
 		tests/lib/test_my_strcat.c		\
