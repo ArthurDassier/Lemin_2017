@@ -8,6 +8,7 @@
 #include "define.h"
 #include "lemin.h"
 
+//check if the line is a valid information
 int check_params(char **tab)
 {
 	if (!tab[0] || !tab[1] || !tab[2]) {
@@ -17,6 +18,7 @@ int check_params(char **tab)
 	return (SUCCESS);
 }
 
+//check if there is one start and one end
 int end_n_start(t_node *rooms)
 {
 	t_node	*tmp_node = rooms->next;

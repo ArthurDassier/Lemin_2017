@@ -9,6 +9,7 @@
 #include "define.h"
 #include <stdio.h>
 
+//place index for each room name
 char **fuel_room_name(t_infos *infos)
 {
 	int	i = 0;
@@ -31,6 +32,7 @@ char **fuel_room_name(t_infos *infos)
 	return (tab);
 }
 
+//check if the line is a tunnel
 int found_tunnels(char *line)
 {
 	int	i = 0;
@@ -43,6 +45,7 @@ int found_tunnels(char *line)
 	return (0);
 }
 
+//protect against double declaration of tunnels
 static void check_existing_tunnels(t_infos *infos, int *tab)
 {
 	t_node	*tmp_node = infos->tunnels;
@@ -63,6 +66,7 @@ static void check_existing_tunnels(t_infos *infos, int *tab)
 	insert_end(&infos->tunnels, tab);
 }
 
+//check if tunnels connect existing rooms
 static int look_for_index(char **line, t_infos *infos,
 int room, t_room *tmp_room)
 {
@@ -88,6 +92,7 @@ int room, t_room *tmp_room)
 	return (SUCCESS);
 }
 
+//get tunnel infos
 int fuel_tnl(char **line, t_infos *infos)
 {
 	if (!line[0] || !line[1] || line[2])

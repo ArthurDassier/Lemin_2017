@@ -21,6 +21,7 @@ int look_for_coordinates_part2(t_node *tmp_node, t_node *tmp_node2)
 	return (SUCCESS);
 }
 
+//check if each room have unique coordinates
 int look_for_coordinates(t_node *rooms)
 {
 	t_node	*tmp_node = rooms;
