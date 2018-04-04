@@ -46,24 +46,24 @@ int found_tunnels(char *line)
 }
 
 //protect against double declaration of tunnels
-static void check_existing_tunnels(t_infos *infos, int *tab)
+static void check_existing_tunnels(t_node **tunnels, int *tab)
 {
-	t_node	*tmp_node = infos->tunnels;
+	t_node	*tmp_node = (*tunnels);
 	int	*tmp_tunnel = NULL;
 
 	if (tab[0] == tab[1])
 		return;
-	if (infos->tunnels == NULL) {
-		insert_end(&infos->tunnels, tab);
+	if (*tunnels == NULL) {
+		insert_end(tunnels, tab);
 		return;
 	}
-	for (int i = 0; i == 0 || tmp_node != infos->tunnels; ++i) {
+	for (int i = 0; i == 0 || tmp_node != (*tunnels); ++i) {
 		tmp_tunnel = (int *)tmp_node->data;
 		if (tab[0] == tmp_tunnel[0] && tab[1] == tmp_tunnel[1])
 			return;
 		tmp_node = tmp_node->next;
 	}
-	insert_end(&infos->tunnels, tab);
+	insert_end(tunnels, tab);
 }
 
 //check if tunnels connect existing rooms
@@ -88,7 +88,7 @@ int room, t_room *tmp_room)
 	if (room != 2)
 		return (FAILURE);
 	tab[2] = -1;
-	check_existing_tunnels(infos, tab);
+	check_existing_tunnels(&infos->tunnels, tab);
 	return (SUCCESS);
 }
 
