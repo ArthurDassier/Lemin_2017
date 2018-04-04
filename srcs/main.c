@@ -6,17 +6,15 @@
 */
 #include "lemin.h"
 
-int main(int ac, char **av)
+int main()
 {
-	t_node *node = NULL;
+	char	**tab = NULL;
+	t_infos	*infos = NULL;
+	t_node	*graph = malloc(sizeof(t_node));
+	t_node	*tmp = NULL;
 
-	create_graph(&node, 6);
-	(void)ac;
-	(void)av;
-	add_edge(node, 1, 5);
-	add_edge(node, 6, 4);
-	add_edge(node, 4, 6);
-	print_graph(node);
-	//display_list(node, &print_list);
-	return (0);
+	tab = recup_anthill(infos, tab);
+	tmp = infos->tunnels;
+//	gen_graph(graph, infos, tab);
+//	print_graph(graph);
 }

@@ -29,7 +29,7 @@ typedef struct s_infos
 	t_node		*tunnels;
 } t_infos;
 
-void	create_graph(t_node **node, int vertices);
+void	create_graph(t_node **, t_infos *, int);
 void	print_list(void *data);
 char	**recup_anthill(t_infos *, char **);
 void	display_graph(void *);
@@ -38,7 +38,7 @@ int found_tunnels(char *);
 char **fuel_room_name(t_infos *);
 void print_graph(t_node *node);
 int add_edge(t_node *, int, int);
-t_node *gen_graph(t_infos *);
+void gen_graph(t_node *, t_infos *, char **);
 int fuel_tnl(char **, t_infos *);
 int analyse_command(char *, int *);
 int check_params(char **);
