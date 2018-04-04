@@ -9,7 +9,7 @@
 #include "define.h"
 #include <stdio.h>
 
-static int fill_rooms(t_node *rm, char **tab, int *type, int nb_ants)
+static int fill_rooms(t_node **rm, char **tab, int *type, int nb_ants)
 {
 	t_room	*rooms = malloc(sizeof(t_room));
 
@@ -26,7 +26,7 @@ static int fill_rooms(t_node *rm, char **tab, int *type, int nb_ants)
 	rooms->y = my_getnbr(tab[2]);
 	rooms->type = *type;
 	*type = 0;
-	insert_end(&rm, rooms);
+	insert_end(rm, rooms);
 	return (SUCCESS);
 }
 
@@ -40,7 +40,7 @@ static int init_anthill(char *line, t_infos *infos, int *type)
 			return (FAILURE);
 		return (SUCCESS);
 	}
-	if (fill_rooms(infos->rooms, my_str_to_wordtab_delim(line, " "),
+	if (fill_rooms(&infos->rooms, my_str_to_wordtab_delim(line, " "),
 	type, nb_ants) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
