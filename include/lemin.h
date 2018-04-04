@@ -19,6 +19,7 @@ typedef struct	s_room
 	int	x;
 	int	y;
 	int	type;
+	int	ant_total;
 	bool	ant;
 }		t_room;
 
