@@ -17,18 +17,20 @@ int check_params(char **tab)
 	return (SUCCESS);
 }
 
-int end_n_start(t_room **rooms)
+int end_n_start(t_node *rooms)
 {
+	t_node	*tmp = rooms->next;
 	int	start = 0;
 	int	end = 0;
-	int	i = 0;
+	t_room	*tmp2 = NULL;
 
-	while (rooms[i]) {
-		if (rooms[i]->type == 1)
+	while (tmp != rooms) {
+		tmp2 = (t_room*)tmp->data;
+		if (tmp2->type == 1)
 			++start;
-		if (rooms[i]->type == 2)
+		if (tmp2->type == 2)
 			++end;
-		++i;
+		tmp = tmp->next;
 	}
 	if (start != 1 || end != 1) {
 		my_print_err("ERROR : No start / end\n");

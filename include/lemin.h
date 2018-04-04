@@ -22,35 +22,27 @@ typedef struct	s_room
 	bool	ant;
 }		t_room;
 
-typedef struct s_tunnels
-{
-	int	**tab_tunnels;
-	char	**names;
-} t_tunnels;
-
 typedef struct s_infos
 {
-	t_room		**rooms;
-	t_tunnels	*tunnels;
+	t_node		*rooms;
+	t_node		*tunnels;
 } t_infos;
 
 void	create_graph(t_node **node, int vertices);
 void	print_list(void *data);
-int recup_anthill(t_infos *, int);
+char	**recup_anthill(t_infos *, char **);
 void	display_graph(void *);
 //t_graph *gen_graph(t_infos *);
-//void fuel_tunnel(char **, t_infos *, int);
-// int found_tunnels(char *);
-// void fuel_room_name(t_infos *, int);
-void print_graph(t_node *node);
-int	add_edge(t_node *, int, int);
-//t_graph *gen_graph(t_infos *);
-int fuel_tnl(char **, t_infos *, int);
+void fuel_tunnel(char **, t_infos *, int);
 int found_tunnels(char *);
-//int fuel_room_name(t_infos *, int);
+char **fuel_room_name(t_infos *);
+void print_graph(t_node *node);
+int add_edge(t_node *, int, int);
+//t_graph *gen_graph(t_infos *);
+int fuel_tnl(char **, t_infos *);
 int analyse_command(char *, int *);
 int check_params(char **);
-int end_n_start(t_room **);
-int check_for_double_names(char **names);
+int end_n_start(t_node *);
+int check_for_double_names(char **);
 
 #endif /* !LEMIN_H_ */
