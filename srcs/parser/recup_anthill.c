@@ -15,10 +15,10 @@ static int fill_rooms(t_node **rm, char **tab, int *type, int nb_ants)
 
 	if (rooms == NULL)
 		return (FAILURE);
-	if (*type == 1)
-		rooms->ant = nb_ants;
+	if (*type == START)
+		rooms->ant_total = nb_ants;
 	else
-		rooms->ant = 0;
+		rooms->ant_total = 0;
 	if (check_params(tab) == FAILURE)
 		return (FAILURE);
 	rooms->name_room = tab[0];
