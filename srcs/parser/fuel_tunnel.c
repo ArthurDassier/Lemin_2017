@@ -61,7 +61,7 @@ int room, t_room *tmp_room)
 		}
 		tmp_node = tmp_node->next;
 	}
-	if (room != 2 || tab[0] == tab[1])
+	if (room != 2)
 		return (FAILURE);
 	tab[2] = -1;
 	insert_end(&infos->tunnels, tab);
