@@ -31,7 +31,7 @@ typedef struct s_infos
 
 void	create_graph(t_node **, t_infos *, int);
 void	print_list(void *data);
-char	**recup_anthill(t_infos *, char **);
+char	**recup_anthill(t_infos **, char **);
 void	display_graph(void *);
 void fuel_tunnel(char **, t_infos *, int);
 int found_tunnels(char *);
