@@ -14,6 +14,8 @@ void	create_graph(t_node **node, int vertices)
 
 	for (int i = 0; i < vertices; ++i) {
 		lemin = malloc(sizeof(*lemin));
+		if (lemin == NULL)
+			return (NULL);
 		lemin->nb_room = i + 1;
 		insert_end(node, lemin);
 	}

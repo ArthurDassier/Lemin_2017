@@ -14,13 +14,12 @@
 
 typedef struct	s_room
 {
-	int	ant;
 	int	nb_room;
-	bool	ant;
 	char	*name_room;
 	int	x;
 	int	y;
 	int	type;
+	bool	ant;
 }		t_room;
 
 typedef struct s_tunnels
