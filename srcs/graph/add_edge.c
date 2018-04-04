@@ -49,7 +49,8 @@ int add_edge(t_node *node, int src, int dest)
 		tmp->graph[1] = NULL;
 		tmp->graph[0] = tmp_dest;
 	} else {
-		my_realloc(tmp->graph, sizeof(t_node *) * (len + 2));
+		tmp->graph = my_realloc(tmp->graph, sizeof(t_node *)
+		* (len + 2));
 		if (tmp->graph == NULL)
 			return (FAILURE);
 		tmp->graph[len + 1] = NULL;

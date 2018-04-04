@@ -42,23 +42,20 @@ typedef struct s_infos
 void	create_graph(t_node **node, int vertices);
 void	print_list(void *data);
 int recup_anthill(t_infos *, int);
-<<<<<<< HEAD
 void	display_graph(void *);
 //t_graph *gen_graph(t_infos *);
-void fuel_tunnel(char **, t_infos *, int);
-int found_tunnels(char *);
-void fuel_room_name(t_infos *, int);
+//void fuel_tunnel(char **, t_infos *, int);
+// int found_tunnels(char *);
+// void fuel_room_name(t_infos *, int);
 void print_graph(t_node *node);
 int	add_edge(t_node *, int, int);
-=======
-t_graph *gen_graph(t_infos *);
+//t_graph *gen_graph(t_infos *);
 int fuel_tnl(char **, t_infos *, int);
 int found_tunnels(char *);
-int fuel_room_name(t_infos *, int);
+//int fuel_room_name(t_infos *, int);
 int analyse_command(char *, int *);
 int check_params(char **);
 int end_n_start(t_room **);
 int check_for_double_names(char **names);
->>>>>>> 295dd2e8821835ab9db99966756db3a38107b65c
 
 #endif /* !LEMIN_H_ */
