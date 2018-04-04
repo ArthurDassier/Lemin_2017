@@ -12,20 +12,16 @@
 #include "list.h"
 #include "graph.h"
 
-typedef struct s_lemin
-{
-	int	nb_room;
-	bool	ant;
-}		t_lemin;
-
-typedef struct s_room
+typedef struct	s_room
 {
 	int	ant;
+	int	nb_room;
+	bool	ant;
 	char	*name_room;
 	int	x;
 	int	y;
 	int	type;
-} t_room;
+}		t_room;
 
 typedef struct s_tunnels
 {
