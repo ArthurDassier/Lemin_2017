@@ -12,22 +12,18 @@
 char **fuel_room_name(t_infos *infos)
 {
 	int	i = 0;
-	t_node	*tmp = infos->rooms;
 	char	**tab;
-	t_room	*tmp3 = NULL;
+	t_node	*tmp_node = infos->rooms;
+	t_room	*tmp_room = NULL;
 
-	while (i == 0 || tmp != infos->rooms) {
-		++i;
-		tmp = tmp->next;
-	}
+	for (i = 0; i == 0 || tmp_node != infos->rooms; ++i)
+		tmp_node = tmp_node->next;
 	tab = malloc(sizeof(char *) * (i + 1));
-	tmp = infos->rooms;
-	i = 0;
-	while (i == 0 || tmp != infos->rooms) {
-		tmp3 = (t_room *)tmp->data;
-		tab[i] = tmp3->name_room;
-		++i;
-		tmp = tmp->next;
+	tmp_node = infos->rooms;
+	for (i = 0; i == 0 || tmp_node != infos->rooms; ++i) {
+		tmp_room = (t_room *)tmp_node->data;
+		tab[i] = tmp_room->name_room;
+		tmp_node = tmp_node->next;
 	}
 	tab[i] = NULL;
 	if (check_for_double_names(tab) == FAILURE)
@@ -47,27 +43,25 @@ int found_tunnels(char *line)
 	return (0);
 }
 
-static int look_for_index(char **line, t_infos *infos)
+static int look_for_index(char **line, t_infos *infos,
+int room, t_room *tmp_room)
 {
-	t_node		*tmp = infos->rooms;
+	t_node		*tmp_node = infos->rooms;
 	int		*tab = malloc(sizeof(int) * 3);
-	int		room = 0;
-	t_room		*tmp2 = NULL;
 
-	line[1][my_strlen(line[1]) - 1] = '\0';
-	for (int i = 0; i == 0 || tmp != infos->rooms; ++i) {
-		tmp2 = (t_room *)tmp->data;
-		if (my_strcmp(tmp2->name_room, line[0]) == 0) {
+	for (int i = 0; i == 0 || tmp_node != infos->rooms; ++i) {
+		tmp_room = (t_room *)tmp_node->data;
+		if (my_strcmp(tmp_room->name_room, line[0]) == 0) {
 			tab[0] = i;
 			++room;
 		}
-		if (my_strcmp(tmp2->name_room, line[1]) == 0) {
+		if (my_strcmp(tmp_room->name_room, line[1]) == 0) {
 			tab[1] = i;
 			++room;
 		}
-		tmp = tmp->next;
+		tmp_node = tmp_node->next;
 	}
-	if (room != 2)
+	if (room != 2 || tab[0] == tab[1])
 		return (FAILURE);
 	tab[2] = -1;
 	insert_end(&infos->tunnels, tab);
@@ -78,7 +72,10 @@ int fuel_tnl(char **line, t_infos *infos)
 {
 	if (!line[0] || !line[1] || line[2])
 		return (FAILURE);
-	if (look_for_index(line, infos) == FAILURE)
+	line[1][my_strlen(line[1]) - 1] = '\0';
+	if (look_for_index(line, infos, 0, NULL) == FAILURE) {
+		my_print_err("ERROR : Invalid tunnel\n");
 		return (FAILURE);
+	}
 	return (SUCCESS);
 }
