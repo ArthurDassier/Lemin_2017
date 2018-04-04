@@ -67,7 +67,7 @@ static int load_file(char *line, t_infos *inf, int *next_room)
 	return (SUCCESS);
 }
 
-int recup_anthill(t_infos *infos, char **index)
+char **recup_anthill(t_infos *infos, char **index)
 {
 	FILE	*fd = stdin;
 	char	*line = NULL;
@@ -80,11 +80,11 @@ int recup_anthill(t_infos *infos, char **index)
 	infos->tunnels = NULL;
 	while ((read = getline(&line, &len, fd)) != -1)
 		if (load_file(line, infos, &type_next_room) == FAILURE)
-			return (FAILURE);
+			return (NULL);
 	if (end_n_start(infos->rooms) == FAILURE)
-		return (FAILURE);
+		return (NULL);
 	index = fuel_room_name(infos);
 	if (index == NULL)
-		return (FAILURE);
-	return (SUCCESS);
+		return (NULL);
+	return (index);
 }

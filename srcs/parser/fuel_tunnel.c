@@ -12,18 +12,18 @@
 char **fuel_room_name(t_infos *infos)
 {
 	int	i = 0;
-	t_node	*tmp = infos->rooms->next;
+	t_node	*tmp = infos->rooms;
 	char	**tab;
 	t_room	*tmp3 = NULL;
 
-	while (tmp != infos->rooms) {
+	while (i == 0 || tmp != infos->rooms) {
 		++i;
 		tmp = tmp->next;
 	}
 	tab = malloc(sizeof(char *) * (i + 1));
-	tmp = infos->rooms->next;
+	tmp = infos->rooms;
 	i = 0;
-	while (tmp != infos->rooms) {
+	while (i == 0 || tmp != infos->rooms) {
 		tmp3 = (t_room *)tmp->data;
 		tab[i] = tmp3->name_room;
 		++i;
@@ -49,13 +49,13 @@ int found_tunnels(char *line)
 
 static int look_for_index(char **line, t_infos *infos)
 {
-	t_node		*tmp = infos->rooms->next;
+	t_node		*tmp = infos->rooms;
 	int		*tab = malloc(sizeof(int) * 3);
 	int		room = 0;
 	t_room		*tmp2 = NULL;
 
 	line[1][my_strlen(line[1]) - 1] = '\0';
-	for (int i = 0; tmp != infos->rooms; ++i) {
+	for (int i = 0; i == 0 || tmp != infos->rooms; ++i) {
 		tmp2 = (t_room *)tmp->data;
 		if (my_strcmp(tmp2->name_room, line[0]) == 0) {
 			tab[0] = i;

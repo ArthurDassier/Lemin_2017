@@ -35,7 +35,7 @@ typedef struct s_infos
 
 void	create_graph(t_node **node, int vertices);
 void	print_list(void *data);
-int recup_anthill(t_infos *, char **);
+char	**recup_anthill(t_infos *, char **);
 void	display_graph(void *);
 //t_graph *gen_graph(t_infos *);
 void fuel_tunnel(char **, t_infos *, int);
