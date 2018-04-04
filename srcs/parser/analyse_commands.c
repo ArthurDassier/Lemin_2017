@@ -10,11 +10,11 @@
 static int command(char *line)
 {
 	if (my_strcmp(line, "##start\n") == 0)
-		return (1);
+		return (START);
 	else if (my_strcmp(line, "##end\n") == 0)
-		return (2);
+		return (END);
 	else
-		return (0);
+		return (NORMAL);
 }
 
 int analyse_command(char *line, int *type_next_room)

@@ -44,5 +44,6 @@ int analyse_command(char *, int *);
 int check_params(char **);
 int end_n_start(t_node *);
 int check_for_double_names(char **);
+int look_for_coordinates(t_node *);
 
 #endif /* !LEMIN_H_ */

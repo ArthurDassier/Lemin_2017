@@ -9,6 +9,7 @@
 #include "define.h"
 #include <stdio.h>
 
+//place index for each room name
 char **fuel_room_name(t_infos *infos)
 {
 	int	i = 0;
@@ -31,6 +32,7 @@ char **fuel_room_name(t_infos *infos)
 	return (tab);
 }
 
+//check if the line is a tunnel
 int found_tunnels(char *line)
 {
 	int	i = 0;
@@ -43,6 +45,28 @@ int found_tunnels(char *line)
 	return (0);
 }
 
+//protect against double declaration of tunnels
+static void check_existing_tunnels(t_node **tunnels, int *tab)
+{
+	t_node	*tmp_node = (*tunnels);
+	int	*tmp_tunnel = NULL;
+
+	if (tab[0] == tab[1])
+		return;
+	if (*tunnels == NULL) {
+		insert_end(tunnels, tab);
+		return;
+	}
+	for (int i = 0; i == 0 || tmp_node != (*tunnels); ++i) {
+		tmp_tunnel = (int *)tmp_node->data;
+		if (tab[0] == tmp_tunnel[0] && tab[1] == tmp_tunnel[1])
+			return;
+		tmp_node = tmp_node->next;
+	}
+	insert_end(tunnels, tab);
+}
+
+//check if tunnels connect existing rooms
 static int look_for_index(char **line, t_infos *infos,
 int room, t_room *tmp_room)
 {
@@ -64,10 +88,11 @@ int room, t_room *tmp_room)
 	if (room != 2)
 		return (FAILURE);
 	tab[2] = -1;
-	insert_end(&infos->tunnels, tab);
+	check_existing_tunnels(&infos->tunnels, tab);
 	return (SUCCESS);
 }
 
+//get tunnel infos
 int fuel_tnl(char **line, t_infos *infos)
 {
 	if (!line[0] || !line[1] || line[2])
