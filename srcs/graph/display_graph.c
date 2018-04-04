@@ -8,7 +8,7 @@
 
 void	display_graph(void *data)
 {
-	t_lemin *lemin = (t_lemin *)data;
+	t_room *room = (t_room *)data;
 
-	my_printf("nb_room = %d\n", lemin->nb_room);
+	my_printf("nb_room = %d\n", room->nb_room);
 }

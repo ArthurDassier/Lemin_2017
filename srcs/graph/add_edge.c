@@ -10,11 +10,11 @@
 t_node	*get_graph_index(t_node *node, int index)
 {
 	t_node	*tmp = node;
-	t_lemin	*lemin;
+	t_room	*room;
 
 	do {
-		lemin = (t_lemin *)tmp->data;
-		if (lemin->nb_room == index)
+		room = (t_room *)tmp->data;
+		if (room->nb_room == index)
 			return (tmp);
 		tmp = tmp->next;
 	} while (tmp != node);

@@ -10,13 +10,13 @@
 // A utility function that creates a graph of V vertices
 void	create_graph(t_node **node, int vertices)
 {
-	t_lemin	*lemin;
+	t_room	*room;
 
 	for (int i = 0; i < vertices; ++i) {
-		lemin = malloc(sizeof(*lemin));
-		if (lemin == NULL)
+		room = malloc(sizeof(*room));
+		if (room == NULL)
 			return (NULL);
-		lemin->nb_room = i + 1;
-		insert_end(node, lemin);
+		room->nb_room = i + 1;
+		insert_end(node, room);
 	}
 }
