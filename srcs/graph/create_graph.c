@@ -15,8 +15,14 @@ void	create_graph(t_node **node, int vertices)
 	for (int i = 0; i < vertices; ++i) {
 		room = malloc(sizeof(*room));
 		if (room == NULL)
-			return ;
+			return;
 		room->nb_room = i + 1;
+		if (room->nb_room == 4)
+			room->type = 2;
+		else if (room->nb_room == 1)
+			room->type = 1;
+		else
+			room->type = 0;
 		insert_end(node, room);
 	}
 }

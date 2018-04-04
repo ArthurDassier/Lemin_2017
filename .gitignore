@@ -3,6 +3,7 @@ gmin.pl
 algo.txt
 srcs/main.c
 .vscode
+srcs/graph/create_graph.c
 main.c
 gmin.pl
 norminette.py
