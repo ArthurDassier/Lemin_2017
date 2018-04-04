@@ -43,6 +43,26 @@ int found_tunnels(char *line)
 	return (0);
 }
 
+static void check_existing_tunnels(t_infos *infos, int *tab)
+{
+	t_node	*tmp_node = infos->tunnels;
+	int	*tmp_tunnel = NULL;
+
+	if (tab[0] == tab[1])
+		return;
+	if (infos->tunnels == NULL) {
+		insert_end(&infos->tunnels, tab);
+		return;
+	}
+	for (int i = 0; i == 0 || tmp_node != infos->tunnels; ++i) {
+		tmp_tunnel = (int *)tmp_node->data;
+		if (tab[0] == tmp_tunnel[0] && tab[1] == tmp_tunnel[1])
+			return;
+		tmp_node = tmp_node->next;
+	}
+	insert_end(&infos->tunnels, tab);
+}
+
 static int look_for_index(char **line, t_infos *infos,
 int room, t_room *tmp_room)
 {
@@ -64,7 +84,7 @@ int room, t_room *tmp_room)
 	if (room != 2)
 		return (FAILURE);
 	tab[2] = -1;
-	insert_end(&infos->tunnels, tab);
+	check_existing_tunnels(infos, tab);
 	return (SUCCESS);
 }
 

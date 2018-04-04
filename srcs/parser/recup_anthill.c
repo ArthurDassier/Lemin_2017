@@ -24,6 +24,8 @@ static int fill_rooms(t_node **rm, char **tab, int *type, int nb_ants)
 	rooms->name_room = tab[0];
 	rooms->x = my_getnbr(tab[1]);
 	rooms->y = my_getnbr(tab[2]);
+	if (rooms->x < 0 || rooms->y < 0)
+		return (FAILURE);
 	rooms->type = *type;
 	*type = 0;
 	insert_end(rm, rooms);
@@ -81,6 +83,8 @@ char **recup_anthill(t_infos *infos, char **index)
 	while ((read = getline(&line, &len, fd)) != -1)
 		if (load_file(line, infos, &type_next_room) == FAILURE)
 			return (NULL);
+	if (look_for_coordinates(infos->rooms) == FAILURE)
+		return (NULL);
 	if (end_n_start(infos->rooms) == FAILURE)
 		return (NULL);
 	index = fuel_room_name(infos);
