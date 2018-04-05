@@ -21,19 +21,19 @@ int check_params(char **tab)
 //check if there is one start and one end
 int end_n_start(t_node *rooms)
 {
-	t_node	*tmp_node = rooms->next;
+	t_node	*tmp_node = rooms;
 	int	start = 0;
 	int	end = 0;
 	t_room	*tmp_room = NULL;
 
-	while (tmp_node != rooms) {
+	do {
 		tmp_room = (t_room*)tmp_node->data;
 		if (tmp_room->type == 1)
 			++start;
 		if (tmp_room->type == 2)
 			++end;
 		tmp_node = tmp_node->next;
-	}
+	} while (tmp_node != rooms);
 	if (start != 1 || end != 1) {
 		my_print_err("ERROR : No start / end\n");
 		return (FAILURE);

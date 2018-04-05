@@ -27,15 +27,14 @@ int look_for_coordinates(t_node *rooms)
 	t_node	*tmp_node = rooms;
 	t_node	*tmp_node2 = NULL;
 
-	for (int i = 0; i == 0 || tmp_node != rooms;
-	tmp_node = tmp_node->next) {
+	do {
 		tmp_node2 = tmp_node->next;
 		if (look_for_coordinates_part2(tmp_node, tmp_node2) == 84) {
 			my_print_err("ERROR : Double"
 			" coordinates declaration\n");
 			return (FAILURE);
 		}
-		++i;
-	}
+		tmp_node = tmp_node->next;
+	} while (tmp_node != rooms);
 	return (SUCCESS);
 }
