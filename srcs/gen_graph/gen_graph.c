@@ -22,9 +22,9 @@ void gen_graph(t_node *node, t_infos *infos, char **tab)
 	int	*tmp = NULL;
 
 	create_graph(&node, infos, nb_vertices(tab));
-	do {
-		tmp = (int *)infos->tunnels->data;
-		add_edge(node, tmp[0], tmp[1]);
-		infos->tunnels = infos->tunnels->next;
-	} while (infos->tunnels != head_tunnels);
+//	do {
+//		tmp = (int *)infos->tunnels->data;
+//		add_edge(node, tmp[0], tmp[1]);
+//		infos->tunnels = infos->tunnels->next;
+//	} while (infos->tunnels != head_tunnels);
 }
