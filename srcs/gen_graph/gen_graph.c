@@ -16,15 +16,26 @@ static int nb_vertices(char **tab)
 	return (i);
 }
 
-void gen_graph(t_node *node, t_infos *infos, char **tab)
+static void gen_graph(t_node **node, t_infos *infos, char **tab)
 {
 	t_node	*head_tunnels = infos->tunnels;
 	int	*tmp = NULL;
 
-	create_graph(&node, infos, nb_vertices(tab));
-//	do {
-//		tmp = (int *)infos->tunnels->data;
-//		add_edge(node, tmp[0], tmp[1]);
-//		infos->tunnels = infos->tunnels->next;
-//	} while (infos->tunnels != head_tunnels);
+	create_graph(node, infos, nb_vertices(tab));
+	do {
+		tmp = (int *)infos->tunnels->data;
+		my_printf("--> %d / %d\n", tmp[0] + 1, tmp[1] + 1);
+		add_edge(*node, (tmp[0] + 1), (tmp[1] + 1));
+		add_edge(*node, (tmp[1] + 1), (tmp[0] + 1));
+		infos->tunnels = infos->tunnels->next;
+	} while (infos->tunnels != head_tunnels);
+}
+
+int init_graph(t_node **node, t_infos *infos, char **tab)
+{
+	gen_graph(node, infos, tab);
+	print_graph(*node);
+	if (is_a_path(*node) != 1)
+		return (-1);
+	return (0);
 }

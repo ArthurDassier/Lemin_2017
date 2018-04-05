@@ -10,9 +10,8 @@ int main()
 {
 	char	**tab = NULL;
 	t_infos	*infos = NULL;
-	t_node	*graph = malloc(sizeof(t_node));
+	t_node	*node = NULL;
 
 	tab = recup_anthill(&infos, tab);
-	gen_graph(graph, infos, tab);
-//	print_graph(graph);
+	init_graph(&node, infos, tab);
 }

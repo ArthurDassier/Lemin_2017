@@ -26,6 +26,7 @@ SRCS	=	srcs/main.c				\
 		srcs/parser/analyse_commands.c		\
 		srcs/parser/error_gest/error_gest.c	\
 		srcs/gen_graph/gen_graph.c		\
+		srcs/gen_graph/error_on_graph.c		\
 		srcs/parser/error_gest/error_coordinates.c	\
 
 SRCS_UT	=	srcs/graph/add_edge.c			\
@@ -36,6 +37,7 @@ SRCS_UT	=	srcs/graph/add_edge.c			\
 		srcs/parser/analyse_commands.c		\
 		srcs/parser/error_gest/error_gest.c	\
 		srcs/gen_graph/gen_graph.c		\
+		srcs/gen_graph/error_on_graph.c		\
 		srcs/parser/error_gest/error_coordinates.c	\
 
 SRCS_TESTS=	tests/test_my_printf.c			\
