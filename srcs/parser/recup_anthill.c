@@ -74,7 +74,7 @@ static int load_file(char *line, t_infos *inf, int *next_room)
 }
 
 //Initialisation of infos and index
-char **recup_anthill(t_infos *infos, char **index)
+char **recup_anthill(t_infos **infos, char **index)
 {
 	FILE	*fd = stdin;
 	char	*line = NULL;
@@ -82,17 +82,17 @@ char **recup_anthill(t_infos *infos, char **index)
 	int	read = 0;
 	int	type_next_room = 0;
 
-	infos = malloc(sizeof(t_infos));
-	infos->rooms = NULL;
-	infos->tunnels = NULL;
+	*infos = malloc(sizeof(t_infos));
+	(*infos)->rooms = NULL;
+	(*infos)->tunnels = NULL;
 	while ((read = getline(&line, &len, fd)) != -1)
-		if (load_file(line, infos, &type_next_room) == FAILURE)
+		if (load_file(line, *infos, &type_next_room) == FAILURE)
 			return (NULL);
-	if (look_for_coordinates(infos->rooms) == FAILURE)
+	if (look_for_coordinates((*infos)->rooms) == FAILURE)
 		return (NULL);
-	if (end_n_start(infos->rooms) == FAILURE)
+	if (end_n_start((*infos)->rooms) == FAILURE)
 		return (NULL);
-	index = fuel_room_name(infos);
+	index = fuel_room_name(*infos);
 	if (index == NULL)
 		return (NULL);
 	return (index);

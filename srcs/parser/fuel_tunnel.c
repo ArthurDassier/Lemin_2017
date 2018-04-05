@@ -57,12 +57,13 @@ static void check_existing_tunnels(t_node **tunnels, int *tab)
 		insert_end(tunnels, tab);
 		return;
 	}
-	for (int i = 0; i == 0 || tmp_node != (*tunnels); ++i) {
+	do {
 		tmp_tunnel = (int *)tmp_node->data;
-		if (tab[0] == tmp_tunnel[0] && tab[1] == tmp_tunnel[1])
+		if ((tab[0] == tmp_tunnel[0] && tab[1] == tmp_tunnel[1])
+		|| (tab[0] == tmp_tunnel[1] && tab[1] == tmp_tunnel[0]))
 			return;
 		tmp_node = tmp_node->next;
-	}
+	} while (tmp_node != (*tunnels));
 	insert_end(tunnels, tab);
 }
 
