@@ -7,6 +7,19 @@
 
 #include "lemin.h"
 
+//check if the line is a tunnel
+int found_tunnels(char *line)
+{
+	int	i = 0;
+
+	while (line[i] != '\0') {
+		if (line[i] == '-')
+			return (1);
+		++i;
+	}
+	return (0);
+}
+
 static int command(char *line)
 {
 	if (my_strcmp(line, "##start\n") == 0)
