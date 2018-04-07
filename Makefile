@@ -26,6 +26,7 @@ SRCS	=	srcs/main.c					\
 		srcs/parser/analyse_commands.c			\
 		srcs/parser/error_gest/error_gest.c		\
 		srcs/gen_graph/gen_graph.c			\
+		srcs/display/display.c				\
 		srcs/parser/error_gest/error_coordinates.c	\
 		srcs/parser/error_gest/end_to_start.c		\
 		srcs/parser/init_infos.c			\
@@ -34,6 +35,7 @@ SRCS_UT	=	srcs/graph/add_edge.c				\
 		srcs/graph/create_graph.c			\
 		srcs/graph/print_graph.c			\
 		srcs/parser/recup_anthill.c			\
+		srcs/display/display.c				\
 		srcs/parser/fuel_tunnel.c			\
 		srcs/parser/analyse_commands.c			\
 		srcs/parser/error_gest/error_gest.c		\

@@ -32,6 +32,7 @@ typedef struct s_infos
 	int	index_end;
 } t_infos;
 
+void display_infos(t_infos *);
 void	create_graph(t_node **, t_infos *, int);
 void	print_list(void *data);
 char	**recup_anthill(t_infos **, char **);
