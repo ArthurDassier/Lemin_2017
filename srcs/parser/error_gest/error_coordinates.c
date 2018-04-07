@@ -27,6 +27,8 @@ int look_for_coordinates(t_node *rooms)
 	t_node	*tmp_node = rooms;
 	t_node	*tmp_node2 = NULL;
 
+	if (rooms == NULL || tmp_node == NULL)
+		return (FAILURE);
 	do {
 		tmp_node2 = tmp_node->next;
 		if (look_for_coordinates_part2(tmp_node, tmp_node2) == 84) {
