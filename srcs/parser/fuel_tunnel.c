@@ -9,21 +9,26 @@
 #include "define.h"
 #include <stdio.h>
 
-int fuel_room_name(t_infos *infos, int nb_rm)
+char **fuel_room_name(t_infos *infos)
 {
 	int	i = 0;
+	char	**tab;
+	t_node	*tmp_node = infos->rooms;
+	t_room	*tmp_room = NULL;
 
-	infos->tunnels->names = malloc(sizeof(char *) * (nb_rm + 1));
-	if (infos->tunnels->names == NULL)
-		return (FAILURE);
-	while (i != nb_rm) {
-		infos->tunnels->names[i] = infos->rooms[i]->name_room;
-		++i;
+	for (i = 0; i == 0 || tmp_node != infos->rooms; ++i)
+		tmp_node = tmp_node->next;
+	tab = malloc(sizeof(char *) * (i + 1));
+	tmp_node = infos->rooms;
+	for (i = 0; i == 0 || tmp_node != infos->rooms; ++i) {
+		tmp_room = (t_room *)tmp_node->data;
+		tab[i] = tmp_room->name_room;
+		tmp_node = tmp_node->next;
 	}
-	infos->tunnels->names[i] = NULL;
-	if (check_for_double_names(infos->tunnels->names) == FAILURE)
-		return (FAILURE);
-	return (SUCCESS);
+	tab[i] = NULL;
+	if (check_for_double_names(tab) == FAILURE)
+		return (NULL);
+	return (tab);
 }
 
 int found_tunnels(char *line)
@@ -38,37 +43,39 @@ int found_tunnels(char *line)
 	return (0);
 }
 
-static int look_for_index(char **line, t_infos *infos, int j)
+static int look_for_index(char **line, t_infos *infos,
+int room, t_room *tmp_room)
 {
-	int	i = 0;
-	int	room = 0;
+	t_node		*tmp_node = infos->rooms;
+	int		*tab = malloc(sizeof(int) * 3);
 
-	line[1][my_strlen(line[1]) - 1] = '\0';
-	while (infos->rooms[i]) {
-		if (my_strcmp(infos->rooms[i]->name_room, line[0]) == 0) {
-			infos->tunnels->tab_tunnels[j][0] = i;
+	for (int i = 0; i == 0 || tmp_node != infos->rooms; ++i) {
+		tmp_room = (t_room *)tmp_node->data;
+		if (my_strcmp(tmp_room->name_room, line[0]) == 0) {
+			tab[0] = i;
 			++room;
 		}
-		if (my_strcmp(infos->rooms[i]->name_room, line[1]) == 0) {
-			infos->tunnels->tab_tunnels[j][1] = i;
+		if (my_strcmp(tmp_room->name_room, line[1]) == 0) {
+			tab[1] = i;
 			++room;
 		}
-		++i;
+		tmp_node = tmp_node->next;
 	}
 	if (room != 2)
 		return (FAILURE);
-	infos->tunnels->tab_tunnels[j][2] = -1;
+	tab[2] = -1;
+	insert_end(&infos->tunnels, tab);
 	return (SUCCESS);
 }
 
-int fuel_tnl(char **line, t_infos *infos, int j)
+int fuel_tnl(char **line, t_infos *infos)
 {
-	infos->tunnels->tab_tunnels[j] = malloc(sizeof(int) * 3);
-	if (infos->tunnels->tab_tunnels[j] == NULL)
-		return (FAILURE);
 	if (!line[0] || !line[1] || line[2])
 		return (FAILURE);
-	if (look_for_index(line, infos, j) == FAILURE)
+	line[1][my_strlen(line[1]) - 1] = '\0';
+	if (look_for_index(line, infos, 0, NULL) == FAILURE) {
+		my_print_err("ERROR : Invalid tunnel\n");
 		return (FAILURE);
+	}
 	return (SUCCESS);
 }

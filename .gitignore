@@ -2,8 +2,13 @@ norm.rb
 gmin.pl
 algo.txt
 srcs/main.c
+<<<<<<< HEAD
+gmin.pl
+=======
 .vscode
 srcs/graph/create_graph.c
+>>>>>>> angie
 main.c
 gmin.pl
 norminette.py
+.vscode
