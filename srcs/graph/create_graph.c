@@ -20,15 +20,19 @@ static void	init_room(t_room *room, int i)
 }
 
 // A utility function that creates a graph of V vertices
-void	create_graph(t_node **node, int vertices)
+void	create_graph(t_node **node, t_infos *infos, int vertices)
 {
-	t_room	*room;
+	t_room	*room = NULL;
+	t_node	*head_room_list = infos->rooms;
 
 	for (int i = 0; i < vertices; ++i) {
 		room = malloc(sizeof(*room));
 		if (room == NULL)
 			return;
-		init_room(room, i);
+		room = (t_room *)infos->rooms->data;
+		room->nb_room = i + 1;
 		insert_end(node, room);
+		infos->rooms = infos->rooms->next;
 	}
+	infos->rooms = head_room_list;
 }

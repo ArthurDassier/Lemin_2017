@@ -7,48 +7,32 @@
 
 #include "lemin.h"
 
-// static int find_nb_vertices(char **names)
-// {
-// 	int	i = 0;
+static int nb_vertices(char **tab)
+{
+	int	i = 0;
 
-// 	while (names[i])
-// 		++i;
-// 	return (i);
-//
- static void remp_rooms_info(t_graph *graph, t_room **room)
- {
- 	t_room		*tmp_room = NULL;
- 	t_adj_node	*tmp = NULL;
- 	int		i = 0;
- 	int		nb = 0
- 	while (room[i]) {
- 		nb = room[i]->nb_room;
- 		tmp = graph->array[nb].head;
- 		graph->array[nb].head->data = malloc(sizeof(t_room));
- 		tmp_room = (t_room *)tmp->data;
- 		tmp_room->ant = room[i]->ant;
- 		tmp_room->x = room[i]->x;
- 		tmp_room->y = room[i]->y;
- 		tmp_room->type = room[i]->type;
- 		tmp_room->nb_room = room[i]->nb_room;
- 		++i;
- 	}
+	while (tab[i])
+		++i;
+	return (i);
 }
-//
-// t_graph	*gen_graph(t_infos *infos)
-// {
-// 	t_graph		*graph =
-// 	create_graph(find_nb_vertices(infos->tunnels->names));
-// 	int		i = 0;
 
-// 	while (infos->tunnels->tunnels[i]) {
-// 		add_edge(graph, infos->tunnels->tunnels[i][0],
-// 		infos->tunnels->tunnels[i][1]);
-// 		++i;
-// 	}
-// 	remp_rooms_info(graph, infos->rooms);
-// 	free(infos);
-// 	free(infos->tunnels);
-// 	free(infos->rooms);
-// 	return (graph);
-// }
+static void gen_graph(t_node **node, t_infos *infos, char **tab)
+{
+	t_node	*head_tunnels = infos->tunnels;
+	int	*tmp = NULL;
+
+	create_graph(node, infos, nb_vertices(tab));
+	do {
+		tmp = (int *)infos->tunnels->data;
+		my_printf("--> %d / %d\n", tmp[0] + 1, tmp[1] + 1);
+		add_edge(*node, (tmp[0] + 1), (tmp[1] + 1));
+		add_edge(*node, (tmp[1] + 1), (tmp[0] + 1));
+		infos->tunnels = infos->tunnels->next;
+	} while (infos->tunnels != head_tunnels);
+}
+
+void init_graph(t_node **node, t_infos *infos, char **tab)
+{
+	gen_graph(node, infos, tab);
+	print_graph(*node);
+}
