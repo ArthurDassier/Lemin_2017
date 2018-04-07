@@ -21,7 +21,7 @@ t_node	*get_graph_index(t_node *node, int index)
 	return (NULL);
 }
 
-static int	get_graph_len(t_node **node)
+int	get_graph_len(t_node **node)
 {
 	int	i;
 

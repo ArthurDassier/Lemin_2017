@@ -10,8 +10,7 @@
 #include "define.h"
 #include "my.h"
 #include "list.h"
-#include "graph.h"
-
+ 
 typedef struct	s_room
 {
 	int	nb_room;
@@ -35,16 +34,28 @@ typedef struct s_infos
 	t_tunnels	*tunnels;
 } t_infos;
 
-void	create_graph(t_node **node, int vertices);
-void	print_list(void *data);
-int recup_anthill(t_infos *, int);
-void	display_graph(void *);
+// Generating graphs
+void	create_graph(t_node **, int);
+int	add_edge(t_node *, int, int);
 //t_graph *gen_graph(t_infos *);
+t_node	*get_graph_index(t_node *, int);
+int	get_graph_len(t_node **node);
+
+// Algorithm
+void	pathfinding(t_node *);
+void	repeat(t_node *node);
+
+
+// Display
+void	print_list(void *data);
+void	display_graph(void *);
+void print_graph(t_node *node);
+
+// Error handling
+int	recup_anthill(t_infos *, int);
 //void fuel_tunnel(char **, t_infos *, int);
 // int found_tunnels(char *);
 // void fuel_room_name(t_infos *, int);
-void print_graph(t_node *node);
-int	add_edge(t_node *, int, int);
 //t_graph *gen_graph(t_infos *);
 int fuel_tnl(char **, t_infos *, int);
 int found_tunnels(char *);

@@ -25,7 +25,7 @@ void print_graph(t_node *node)
 		my_printf("Room -> %d\n", room->nb_room);
 		for (int i = 0; tmp->graph && tmp->graph[i] != NULL; ++i) {
 			room = (t_room *)tmp->graph[i]->data;
-			my_printf("edge -> %d, ", room->nb_room);
+			my_printf("::edge -> %d, ", room->nb_room);
 		}
 		my_printf("\n");
 		tmp = tmp->next;
