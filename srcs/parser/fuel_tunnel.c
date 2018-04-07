@@ -9,6 +9,16 @@
 #include "define.h"
 #include <stdio.h>
 
+static void place_strategic_room(t_infos *infos, int type, int i)
+{
+	if (type == 0)
+		return;
+	if (type == START)
+		infos->index_start = i;
+	else
+		infos->index_end = i;
+}
+
 //place index for each room name
 char **fuel_room_name(t_infos *infos)
 {
@@ -24,25 +34,13 @@ char **fuel_room_name(t_infos *infos)
 	for (i = 0; i == 0 || tmp_node != infos->rooms; ++i) {
 		tmp_room = (t_room *)tmp_node->data;
 		tab[i] = tmp_room->name_room;
+		place_strategic_room(infos, tmp_room->type, i);
 		tmp_node = tmp_node->next;
 	}
 	tab[i] = NULL;
 	if (check_for_double_names(tab) == FAILURE)
 		return (NULL);
 	return (tab);
-}
-
-//check if the line is a tunnel
-int found_tunnels(char *line)
-{
-	int	i = 0;
-
-	while (line[i] != '\0') {
-		if (line[i] == '-')
-			return (1);
-		++i;
-	}
-	return (0);
 }
 
 //protect against double declaration of tunnels

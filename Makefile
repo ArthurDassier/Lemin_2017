@@ -27,12 +27,13 @@ SRCS	=	srcs/main.c				\
 		srcs/parser/error_gest/error_gest.c	\
 		srcs/gen_graph/gen_graph.c		\
 		srcs/parser/error_gest/error_coordinates.c	\
+		srcs/parser/error_gest/end_to_start.c	\
 
 SRCS_UT	=	srcs/graph/add_edge.c			\
-		srcs/graph/add_node_list.c		\
 		srcs/graph/create_graph.c		\
 		srcs/graph/print_graph.c		\
 		srcs/parser/recup_anthill.c		\
+		srcs/parser/fuel_tunnel.c		\
 		srcs/parser/analyse_commands.c		\
 		srcs/parser/error_gest/error_gest.c	\
 		srcs/gen_graph/gen_graph.c		\
@@ -66,7 +67,8 @@ SRCS_TESTS=	tests/test_my_printf.c			\
 		tests/lib/test_my_strlen.c		\
 		tests/lib/test_my_strncat.c		\
 		tests/lib/test_my_strncmp.c		\
-		tests/lib/test_my_swap.c
+		tests/lib/test_my_swap.c		\
+		tests/tests_parser/test_tunnels.c	\
 
 LDFLAGS=	-lcriterion --coverage -lncurses -L./lib -lmy
 

@@ -25,8 +25,10 @@ typedef struct	s_room
 
 typedef struct s_infos
 {
-	t_node		*rooms;
-	t_node		*tunnels;
+	t_node	*rooms;
+	t_node	*tunnels;
+	int	index_start;
+	int	index_end;
 } t_infos;
 
 void	create_graph(t_node **, t_infos *, int);
@@ -45,5 +47,7 @@ int check_params(char **);
 int end_n_start(t_node *);
 int check_for_double_names(char **);
 int look_for_coordinates(t_node *);
+
+int end_to_start(t_infos *infos, char **index);
 
 #endif /* !LEMIN_H_ */
