@@ -42,16 +42,13 @@ void	repeat(t_node *node);
 
 // Display
 void	print_list(void *data);
-<<<<<<< HEAD
 void	display_graph(void *);
 void print_graph(t_node *node);
 
 // Error handling
-int	recup_anthill(t_infos *, int);
 //void fuel_tunnel(char **, t_infos *, int);
 // int found_tunnels(char *);
 // void fuel_room_name(t_infos *, int);
-=======
 char	**recup_anthill(t_infos *, char **);
 void	display_graph(void *);
 //t_graph *gen_graph(t_infos *);
@@ -60,7 +57,6 @@ int found_tunnels(char *);
 char **fuel_room_name(t_infos *);
 void print_graph(t_node *node);
 int add_edge(t_node *, int, int);
->>>>>>> staging
 //t_graph *gen_graph(t_infos *);
 int fuel_tnl(char **, t_infos *);
 int analyse_command(char *, int *);
