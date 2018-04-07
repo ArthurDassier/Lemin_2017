@@ -27,6 +27,7 @@ typedef struct s_infos
 {
 	t_node	*rooms;
 	t_node	*tunnels;
+	t_node	*t_display;
 	int	index_start;
 	int	index_end;
 } t_infos;
@@ -47,6 +48,8 @@ int check_params(char **);
 int end_n_start(t_node *);
 int check_for_double_names(char **);
 int look_for_coordinates(t_node *);
+void init_inf(t_infos **infos);
+int found_l_problem(char *str);
 
 int end_to_start(t_infos *infos, char **index);
 

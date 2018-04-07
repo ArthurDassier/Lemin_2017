@@ -44,17 +44,21 @@ char **fuel_room_name(t_infos *infos)
 }
 
 //protect against double declaration of tunnels
-static void check_existing_tunnels(t_node **tunnels, int *tab)
+static void check_existing_tunnels(t_node **tunnels, t_node **dplay,
+int *tab, int *tmp_tunnel)
 {
 	t_node	*tmp_node = (*tunnels);
-	int	*tmp_tunnel = NULL;
 
-	if (tab[0] == tab[1])
-		return;
-	if (*tunnels == NULL) {
-		insert_end(tunnels, tab);
+	if (tab[0] == tab[1]) {
+		insert_end(dplay, tab);
 		return;
 	}
+	if (*tunnels == NULL) {
+		insert_end(tunnels, tab);
+		insert_end(dplay, tab);
+		return;
+	}
+	insert_end(dplay, tab);
 	do {
 		tmp_tunnel = (int *)tmp_node->data;
 		if ((tab[0] == tmp_tunnel[0] && tab[1] == tmp_tunnel[1])
@@ -69,8 +73,8 @@ static void check_existing_tunnels(t_node **tunnels, int *tab)
 static int look_for_index(char **line, t_infos *infos,
 int room, t_room *tmp_room)
 {
-	t_node		*tmp_node = infos->rooms;
-	int		*tab = malloc(sizeof(int) * 3);
+	t_node	*tmp_node = infos->rooms;
+	int	*tab = malloc(sizeof(int) * 3);
 
 	for (int i = 0; i == 0 || tmp_node != infos->rooms; ++i) {
 		tmp_room = (t_room *)tmp_node->data;
@@ -87,7 +91,7 @@ int room, t_room *tmp_room)
 	if (room != 2)
 		return (FAILURE);
 	tab[2] = -1;
-	check_existing_tunnels(&infos->tunnels, tab);
+	check_existing_tunnels(&infos->tunnels, &infos->t_display, tab, NULL);
 	return (SUCCESS);
 }
 
@@ -96,7 +100,7 @@ int fuel_tnl(char **line, t_infos *infos)
 {
 	if (!line[0] || !line[1] || line[2])
 		return (FAILURE);
-	line[1][my_strlen(line[1]) - 1] = '\0';
+	line[1][found_l_problem(line[1])] = '\0';
 	if (look_for_index(line, infos, 0, NULL) == FAILURE) {
 		my_print_err("ERROR : Invalid tunnel\n");
 		return (FAILURE);

@@ -19,4 +19,5 @@ int main(void)
 	if (end_to_start(infos, tab) == FAILURE)
 		return (FAILURE);
 	init_graph(&node, infos, tab);
+	return (0);
 }

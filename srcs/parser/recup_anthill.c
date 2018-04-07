@@ -9,7 +9,6 @@
 #include "define.h"
 #include <stdio.h>
 
-
 //fill each room infos
 static int fill_rooms(t_node **rm, char **tab, int *type, int nb_ants)
 {
@@ -83,8 +82,7 @@ char **recup_anthill(t_infos **infos, char **index)
 	int	type_next_room = 0;
 
 	*infos = malloc(sizeof(t_infos));
-	(*infos)->rooms = NULL;
-	(*infos)->tunnels = NULL;
+	init_inf(infos);
 	while ((read = getline(&line, &len, fd)) != -1)
 		if (load_file(line, *infos, &type_next_room) == FAILURE)
 			return (NULL);
