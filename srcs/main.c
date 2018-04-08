@@ -18,9 +18,7 @@ int main(void)
 	if (end_to_start(infos, tab) == FAILURE)
 		return (FAILURE);
 	init_graph(&node, infos, tab);
-	//print_graph(node);
-	//djikstra(node);
-	send_ants(node);
-	display_infos(infos, tab);
-	return (SUCCESS);
+	display_infos(infos);
+	send_ants(&node);
+	return (0);
 }

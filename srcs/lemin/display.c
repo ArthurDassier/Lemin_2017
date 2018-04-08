@@ -5,3 +5,8 @@
 ** display
 */
 #include "lemin.h"
+
+void	display_moves(int id, char *name)
+{
+	my_printf("P%d-%s ", id, name);
+}

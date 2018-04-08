@@ -17,31 +17,37 @@ CPPFLAGS	+=	-I./include -I./lib/my/include
 
 NAME	=	lem_in
 
-SRCS	=	srcs/main.c				\
-		srcs/graph/add_edge.c			\
-		srcs/display/display.c			\
-		srcs/graph/create_graph.c		\
-		srcs/graph/print_graph.c		\
-		srcs/lemin/algo.c			\
-		srcs/lemin/lem_in.c			\
+SRCS	=	srcs/main.c					\
+		srcs/graph/add_edge.c				\
+		srcs/graph/print_graph.c			\
+		srcs/graph/create_graph.c			\
+		srcs/gen_graph/gen_graph.c			\
+		srcs/lemin/algo.c				\
+		srcs/lemin/get_total.c				\
+		srcs/lemin/ant.c				\
+		srcs/lemin/lem_in.c				\
+		srcs/lemin/display.c				\
 		srcs/lemin/delete_node.c			\
-		srcs/parser/recup_anthill.c		\
-		srcs/parser/fuel_tunnel.c		\
-		srcs/parser/analyse_commands.c		\
-		srcs/parser/error_gest/error_gest.c	\
-		srcs/gen_graph/gen_graph.c		\
+		srcs/parser/recup_anthill.c			\
+		srcs/parser/fuel_tunnel.c			\
+		srcs/parser/analyse_commands.c			\
+		srcs/parser/error_gest/error_gest.c		\
+		srcs/parser/init_infos.c			\
 		srcs/parser/error_gest/error_coordinates.c	\
-		srcs/parser/error_gest/end_to_start.c	\
+		srcs/parser/error_gest/end_to_start.c		\
+		srcs/display/display.c
 
-SRCS_UT	=	srcs/graph/add_edge.c			\
-		srcs/graph/create_graph.c		\
-		srcs/graph/print_graph.c		\
-		srcs/parser/recup_anthill.c		\
-		srcs/parser/fuel_tunnel.c		\
-		srcs/parser/analyse_commands.c		\
-		srcs/parser/error_gest/error_gest.c	\
-		srcs/gen_graph/gen_graph.c		\
+SRCS_UT	=	srcs/graph/add_edge.c				\
+		srcs/graph/create_graph.c			\
+		srcs/graph/print_graph.c			\
+		srcs/parser/recup_anthill.c			\
+		srcs/display/display.c				\
+		srcs/parser/fuel_tunnel.c			\
+		srcs/parser/analyse_commands.c			\
+		srcs/parser/error_gest/error_gest.c		\
+		srcs/gen_graph/gen_graph.c			\
 		srcs/parser/error_gest/error_coordinates.c	\
+		srcs/parser/init_infos.c			\
 
 SRCS_TESTS=	tests/test_my_printf.c			\
 		tests/lib/test_my_strcat.c		\

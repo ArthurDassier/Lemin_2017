@@ -21,6 +21,7 @@ t_node	*get_room(t_node *node, int type)
 	return (NULL);
 }
 
+// Returns true if there are no univisted nodes
 static bool	check_visited_nodes(t_node *node)
 {
 	t_node	*tmp = node;
@@ -33,19 +34,7 @@ static bool	check_visited_nodes(t_node *node)
 	return (true);
 }
 
-void	display_room_info(t_node *end, t_room *room)
-{
-	t_room *lol;
-
-	if (end->shortest) {
-		lol = (t_room *)end->shortest->data;
-		printf("nb_room = %d & type = %d & path = %d shortest = %d\n", room->nb_room, room->type, end->path, lol->nb_room);
-	}
-	else
-		printf("nb_room = %d & type = %d & path = %d shortest = -1\n", room->nb_room, room->type, end->path);
-	
-}
-
+// Returns the smallest distance
 static t_node	*get_smallest_distance(t_node *node)
 {
 	t_node *tmp = node;
@@ -60,10 +49,12 @@ static t_node	*get_smallest_distance(t_node *node)
 	return (save);
 }
 
-static void	find_path(t_node *curr)
+static int	find_path(t_node *curr)
 {
 	t_node	*tmp;
 
+	if (curr == NULL)
+		return (FAILURE);
 	for (int i = 0; curr->graph && curr->graph[i]; ++i) {
 		tmp = curr->graph[i];
 		if (tmp->visited)
@@ -74,26 +65,18 @@ static void	find_path(t_node *curr)
 		}
 	}
 	curr->visited = true;
+	return (SUCCESS);
 }
 
-static void	display_rooms(t_node *node)
+// Implementation of djikstra algorithm
+void	djikstra(t_node **node)
 {
-	t_node *tmp = node;
-	t_room *room;
-
-	do {
-		room = (t_room *)tmp->data;
-		display_room_info(tmp, room);	
-		tmp = tmp->next;
-	} while (tmp != node);
-}
-
-void	djikstra(t_node *node)
-{
-	t_node	*end = get_room(node, END);
+	t_node	*end = get_room(*node, END);
 
 	end->path = 0;
 	find_path(end);
-	while (check_visited_nodes(node) == false)
-		find_path(get_smallest_distance(node));
+	while (check_visited_nodes(*node) == false)
+		if (find_path(get_smallest_distance(*node)) == FAILURE)
+			break;
+	clean_up(node);
 }
