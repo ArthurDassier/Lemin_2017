@@ -32,20 +32,20 @@ static int find_nb_of_ants(t_node *room)
 }
 
 // print tunnels (bond)
-static void print_tunnels(t_node *tunnels)
+static void print_tunnels(t_node *tunnels, char **tab)
 {
 	t_node		*tmp = tunnels;
 	int		*data = NULL;
 
 	do {
 		data = (int *)tmp->data;
-		my_printf("%d-%d\n", data[0], data[1]);
+		my_printf("%s-%s\n", tab[data[0]], tab[data[1]]);
 		tmp = tmp->next;
 	} while (tmp != tunnels);
 }
 
 // main function to diaplay NB_ANT / ROOMS / TUNNELS
-void display_infos(t_infos *infos)
+void display_infos(t_infos *infos, char **tab)
 {
 	t_node	*head = infos->rooms;
 	t_room	*room = NULL;
@@ -59,6 +59,6 @@ void display_infos(t_infos *infos)
 		infos->rooms = infos->rooms->next;
 	} while (infos->rooms != head);
 	my_printf("#tunnels\n");
-	print_tunnels(infos->t_display);
+	print_tunnels(infos->t_display, tab);
 	my_printf("#moves\n");
 }
