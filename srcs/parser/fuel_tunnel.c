@@ -98,7 +98,7 @@ int room, t_room *tmp_room)
 //get tunnel infos
 int fuel_tnl(char **line, t_infos *infos)
 {
-	if (!line[0] || !line[1] || line[2])
+	if (!line[0] || !line[1] || line[2] || infos->rooms == NULL)
 		return (FAILURE);
 	line[1][found_l_problem(line[1])] = '\0';
 	if (look_for_index(line, infos, 0, NULL) == FAILURE) {
