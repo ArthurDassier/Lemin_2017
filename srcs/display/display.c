@@ -7,28 +7,37 @@
 
 #include "lemin.h"
 
+// display infos of a room (name, x, y) with ##start and ##end
+
 static void print_room(t_room *room)
 {
 	if (room->type == 1)
 		my_printf("##start\n");
 	else if (room->type == 2)
 		my_printf("##end\n");
-	my_printf("%s", room->name_room);
+	my_printf("%s ", room->name_room);
 	my_printf("%d %d\n", room->x, room->y);
 }
 
-static int find_nb_of_ants(t_room *room)
-{
-	t_room	*tmp = room;
+// find room start and display the nb of ants
 
-	while (tmp->type != 1)
+static int find_nb_of_ants(t_node *room)
+{
+	t_node	*tmp = room;
+	t_room	*info_room = (t_room *)tmp->data;
+
+	while (info_room->type != 1) {
 		tmp = tmp->next;
-	return (tmp->ant);
+		info_room = (t_room *)tmp->data;
+	}
+	return (info_room->ant_total);
 }
 
-static void print_tunnels(t_tunnels *tunnels)
+// print tunnels (bond)
+
+static void print_tunnels(t_node *tunnels)
 {
-	t_tunnels	*tmp = tunnels;
+	t_node		*tmp = tunnels;
 	int		*data = NULL;
 
 	do {
@@ -38,20 +47,22 @@ static void print_tunnels(t_tunnels *tunnels)
 	} while (tmp != tunnels);
 }
 
-void diaplay_infos(s_infos *infos, char **tab)
+// main function to diaplay NB_ANT / ROOMS / TUNNELS
+
+void display_infos(t_infos *infos)
 {
-	t_room	*head = infos->rooms;
+	t_node	*head = infos->rooms;
 	t_room	*room = NULL;
 
-	room = (t_room *)infos->rooms;
 	my_printf("#number_of_ants\n");
 	my_printf("%d\n", find_nb_of_ants(infos->rooms));
 	my_printf("#rooms\n");
 	do {
-		room = (t_room *)infos->data;
+		room = (t_room *)infos->rooms->data;
 		print_room(room);
+		infos->rooms = infos->rooms->next;
 	} while (infos->rooms != head);
-	my_printf("#tunnels");
-	print_tunnels(infos->tunnels);
+	my_printf("#tunnels\n");
+	print_tunnels(infos->t_display);
 	my_printf("#moves\n");
 }
