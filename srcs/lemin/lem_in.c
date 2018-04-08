@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-**1 CPE_lemin_2017
+** CPE_lemin_2017
 ** File description:
 ** lem_in
 */
@@ -26,7 +26,7 @@ static void	first_ant(t_room *room, t_node **ant_list, t_node *tmp)
 {
 	static int nb_ant = 0;
 	t_ant	*ant = malloc(sizeof(*ant));
-	
+
 	if (tmp) {
 		ant->room = tmp;
 		((t_room *)tmp->data)->ant = true;

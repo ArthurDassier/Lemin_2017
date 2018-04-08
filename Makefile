@@ -78,8 +78,7 @@ SRCS_TESTS=	tests/test_my_printf.c			\
 		tests/lib/test_my_strncat.c		\
 		tests/lib/test_my_strncmp.c		\
 		tests/lib/test_my_swap.c		\
-		tests/tests_parser/test_tunnels.c	\
-		tests/tests_parser/test_comment.c
+		tests/tests_parser/test_tunnels.c
 
 LDFLAGS=	-lcriterion --coverage -lncurses -L./lib -lmy
 
