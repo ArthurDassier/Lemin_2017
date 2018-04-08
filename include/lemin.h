@@ -35,9 +35,10 @@ typedef struct	s_infos
 	t_node	*t_display;
 	int	index_start;
 	int	index_end;
+	int	err_ant;
 }		t_infos;
 
-// Generating graphs
+void display_infos(t_infos *, char **);
 void	create_graph(t_node **, t_infos *, int);
 int	add_edge(t_node *, int, int);
 t_node	*get_graph_index(t_node *, int);
@@ -56,7 +57,6 @@ int	get_total(t_node *);
 void	print_list(void *);
 void	display_graph(void *);
 void	print_graph(t_node *);
-void	display_infos(t_infos *);
 void	display_moves(int id, char *name);
 
 // Clean up
@@ -83,6 +83,7 @@ int	end_n_start(t_node *);
 int	check_for_double_names(char **);
 int	look_for_coordinates(t_node *);
 int	end_to_start(t_infos *, char **);
-
+int print_err_rooms(int nb_ants, t_node *rooms);
+void print_room(t_room *room);
 
 #endif /* !LEMIN_H_ */

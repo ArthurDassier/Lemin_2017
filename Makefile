@@ -5,7 +5,7 @@
 ## A Makefile for projetcs
 ##
 
-CC	=	gcc -g3
+CC	=	gcc
 
 RM	=	rm -rf
 
@@ -35,7 +35,8 @@ SRCS	=	srcs/main.c					\
 		srcs/parser/init_infos.c			\
 		srcs/parser/error_gest/error_coordinates.c	\
 		srcs/parser/error_gest/end_to_start.c		\
-		srcs/display/display.c
+		srcs/display/display.c				\
+		srcs/parser/error_gest/print_what_i_have.c	\
 
 SRCS_UT	=	srcs/graph/add_edge.c				\
 		srcs/graph/create_graph.c			\
