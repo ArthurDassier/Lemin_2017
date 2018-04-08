@@ -19,9 +19,12 @@ NAME	=	lem_in
 
 SRCS	=	srcs/main.c				\
 		srcs/graph/add_edge.c			\
+		srcs/display/display.c			\
 		srcs/graph/create_graph.c		\
 		srcs/graph/print_graph.c		\
 		srcs/lemin/algo.c			\
+		srcs/lemin/lem_in.c			\
+		srcs/lemin/delete_node.c			\
 		srcs/parser/recup_anthill.c		\
 		srcs/parser/fuel_tunnel.c		\
 		srcs/parser/analyse_commands.c		\
@@ -70,6 +73,7 @@ SRCS_TESTS=	tests/test_my_printf.c			\
 		tests/lib/test_my_strncmp.c		\
 		tests/lib/test_my_swap.c		\
 		tests/tests_parser/test_tunnels.c	\
+		tests/tests_parser/test_comment.c
 
 LDFLAGS=	-lcriterion --coverage -lncurses -L./lib -lmy
 

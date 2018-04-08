@@ -38,7 +38,7 @@ static void print_tunnels(t_tunnels *tunnels)
 	} while (tmp != tunnels);
 }
 
-void diaplay_infos(s_infos *infos, char **tab)
+void display_infos(t_infos *infos, char **tab)
 {
 	t_room	*head = infos->rooms;
 	t_room	*room = NULL;

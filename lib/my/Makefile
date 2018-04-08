@@ -4,7 +4,7 @@
 ## File description:
 ## Makefile lib
 ##
-CC	=	gcc
+CC	=	gcc -g3
 
 CP	=	cp
 

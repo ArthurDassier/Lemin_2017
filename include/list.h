@@ -8,6 +8,7 @@
 #define LIST_H_
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct	s_node
 {
@@ -16,6 +17,8 @@ typedef struct	s_node
 	struct s_node	*next;
 	struct s_node	*prev;
 	struct s_node	**graph;
+	struct s_node	*shortest;
+	bool		visited;
 }		t_node;
 
 int	add_edge(t_node *, int, int);

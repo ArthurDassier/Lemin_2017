@@ -11,7 +11,7 @@ void	*my_realloc(void *data, int size)
 	char	*new;
 
 	new = malloc(sizeof(char) * (size));
-	if (new == NULL)
+ 	if (new == NULL)
 		return (NULL);
 	my_memcpy(data, new, size);
 	my_free(data);

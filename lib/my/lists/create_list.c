@@ -14,6 +14,8 @@ static	void insert_begin(t_node **head, void *data)
 	new_node->next = new_node->prev = new_node;
 	new_node->data = data;
 	new_node->graph = NULL;
+	new_node->shortest = NULL;
+	new_node->visited = false;
 	new_node->path = -1;
 	*head = new_node;
 }
@@ -34,6 +36,8 @@ void	insert_end(t_node **head, void *data)
 		last->next = new_node;
 		new_node->data = data;
 		new_node->graph = NULL;
+		new_node->shortest = NULL;
+		new_node->visited = false;
 		new_node->path = -1;
 	}
 }

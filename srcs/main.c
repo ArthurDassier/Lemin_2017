@@ -6,13 +6,21 @@
 */
 #include "lemin.h"
 
-int main()
+int main(void)
 {
 	char	**tab = NULL;
 	t_infos	*infos = NULL;
 	t_node	*node = NULL;
 
 	tab = recup_anthill(&infos, tab);
+	if (tab == NULL)
+		return (FAILURE);
+	if (end_to_start(infos, tab) == FAILURE)
+		return (FAILURE);
 	init_graph(&node, infos, tab);
 	//print_graph(node);
+	//djikstra(node);
+	send_ants(node);
+	display_infos(infos, tab);
+	return (SUCCESS);
 }

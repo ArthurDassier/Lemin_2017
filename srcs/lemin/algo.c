@@ -7,75 +7,93 @@
 #include "lemin.h"
 
 // Returns the node of the end
-static t_node	*get_end_room(t_node *node)
+t_node	*get_room(t_node *node, int type)
 {
 	t_node	*tmp = node;
 	t_room	*room;
 
 	do {
 		room = (t_room *)tmp->data;
-		if (room->type == END)
+		if (room->type == type)
 			return (tmp);
 		tmp = tmp->next;
 	} while (tmp != node);
 	return (NULL);
 }
 
-static void	display_room_info(t_node *end, t_room *room)
+static bool	check_visited_nodes(t_node *node)
 {
-	printf("nb_room = %d & type = %d & path = %d\n", room->nb_room, room->type, end->path);
-}
+	t_node	*tmp = node;
 
-static void	algo(t_node *end, int *i, int *save)
-{
-	t_room	*room;
-	t_room	*room_save;
-	int	count = 1;
-	t_node *tmp;
-
-	room_save = (t_room *)end->graph[*i]->data;
-	printf("nb room = d\n", room_save->nb_room);
-	if (end->graph[*i] != NULL)
-		tmp = end->graph[*i];
-	else
-		return;
 	do {
-		display_room_info(tmp, room);
-		room_save = (t_room *)tmp->data;
-		for (int j = 0; tmp->graph && tmp->graph[j] != NULL; ++j) {
-			room = (t_room *)tmp->graph[j]->data;
-			display_room_info(tmp, room);
-			if (room->nb_room == room_save->nb_room) {
-				if (tmp->graph[j + 1] == NULL) {
-					break;
-				}
-				else
-					++j;
-			}
-			tmp = tmp->graph[j];
-			if (tmp->path == -1)
-				tmp->path = 0;
-			++count;
-			room = (t_room *)tmp->data;
-			tmp->path += count;
-			if (room->type == START || room_save->type == START)
-				break;
-		}
-		if (room->type == START || room_save->type == START)
-			break;
-	} while (tmp != end);
-	save[*i] = tmp->path;
-	printf("save[%d] = %d\n", *i, save[*i]);
-	*i = *i + 1;
-	display_room_info(tmp, room);
+		if (tmp->visited == false)
+			return (false);
+		tmp = tmp->next;
+	} while (tmp != node);
+	return (true);
 }
 
-void	repeat(t_node *node)
+void	display_room_info(t_node *end, t_room *room)
 {
-	int	i = 0;
-	t_node	*end = get_end_room(node);
-	int	*save = malloc(sizeof(*save) * get_graph_len(end->graph));
+	t_room *lol;
 
-	while (end->graph && end->graph[i] != NULL)
-		algo(end, &i, save);
+	if (end->shortest) {
+		lol = (t_room *)end->shortest->data;
+		printf("nb_room = %d & type = %d & path = %d shortest = %d\n", room->nb_room, room->type, end->path, lol->nb_room);
+	}
+	else
+		printf("nb_room = %d & type = %d & path = %d shortest = -1\n", room->nb_room, room->type, end->path);
+	
+}
+
+static t_node	*get_smallest_distance(t_node *node)
+{
+	t_node *tmp = node;
+	t_node *save = NULL;
+
+	do {
+		if ((save == NULL || (tmp->path < save->path && save))
+		&& !tmp->visited && tmp->path != -1)
+			save = tmp;
+		tmp = tmp->next;
+	} while (tmp != node);
+	return (save);
+}
+
+static void	find_path(t_node *curr)
+{
+	t_node	*tmp;
+
+	for (int i = 0; curr->graph && curr->graph[i]; ++i) {
+		tmp = curr->graph[i];
+		if (tmp->visited)
+			continue;
+		if (tmp->path == -1 || tmp->path > curr->path + 1) {
+			tmp->path = curr->path + 1;
+			tmp->shortest = curr;
+		}
+	}
+	curr->visited = true;
+}
+
+static void	display_rooms(t_node *node)
+{
+	t_node *tmp = node;
+	t_room *room;
+
+	do {
+		room = (t_room *)tmp->data;
+		display_room_info(tmp, room);	
+		tmp = tmp->next;
+	} while (tmp != node);
+}
+
+void	djikstra(t_node *node)
+{
+	t_node	*end = get_room(node, END);
+
+	end->path = 0;
+	find_path(end);
+	while (check_visited_nodes(node) == false)
+		find_path(get_smallest_distance(node));
 }

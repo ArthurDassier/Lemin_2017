@@ -48,7 +48,7 @@ static int check_path(int *path, int begin, int finnish)
 	return (FAILURE);
 }
 
-static int build_path(t_infos *infos, char *path)
+static int build_path(t_infos *infos, int *path)
 {
 	t_node	*tmp_node = infos->tunnels;
 	int	*tmp_tunnel = NULL;
@@ -57,10 +57,12 @@ static int build_path(t_infos *infos, char *path)
 		tmp_tunnel = (int *)tmp_node->data;
 		path = add_path(tmp_tunnel, path);
 		if (check_path(path, infos->index_start,
-		infos->index_end) == SUCCESS)
+		infos->index_end) == SUCCESS) {
 			return (SUCCESS);
+		}
 			tmp_node = tmp_node->next;
 	} while (tmp_node != infos->tunnels);
+	return (FAILURE);
 }
 
 int end_to_start(t_infos *infos, char **index)

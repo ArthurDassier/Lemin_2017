@@ -7,18 +7,6 @@
 #include "list.h"
 #include "lemin.h"
 
-static void	init_room(t_room *room, int i)
-{
-	room->nb_room = i + 1;
-	room->ant = false;
-	if (room->nb_room == 5)
-		room->type = 2;
-	else if (room->nb_room == 1)
-		room->type = 1;
-	else
-		room->type = 0;
-}
-
 // A utility function that creates a graph of V vertices
 void	create_graph(t_node **node, t_infos *infos, int vertices)
 {

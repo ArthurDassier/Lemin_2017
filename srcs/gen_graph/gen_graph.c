@@ -34,5 +34,5 @@ static void gen_graph(t_node **node, t_infos *infos, char **tab)
 void init_graph(t_node **node, t_infos *infos, char **tab)
 {
 	gen_graph(node, infos, tab);
-	print_graph(*node);
+	//print_graph(*node);
 }
