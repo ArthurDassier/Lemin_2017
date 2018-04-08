@@ -19,6 +19,8 @@ int found_l_problem(char *str)
 
 void init_inf(t_infos **infos)
 {
+	if (infos == NULL)
+		return;
 	(*infos)->rooms = NULL;
 	(*infos)->tunnels = NULL;
 	(*infos)->t_display = NULL;
