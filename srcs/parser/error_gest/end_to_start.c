@@ -70,7 +70,7 @@ int end_to_start(t_infos *infos, char **index)
 	int	*path;
 	int	i = 0;
 
-	while (index[i])
+	while (index[i] != NULL)
 		++i;
 	path = malloc(sizeof(int) * (i + 1));
 	if (path == NULL)
