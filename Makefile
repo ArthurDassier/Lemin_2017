@@ -5,7 +5,7 @@
 ## A Makefile for projetcs
 ##
 
-CC	=	gcc -g3
+CC	=	gcc
 
 RM	=	rm -rf
 
