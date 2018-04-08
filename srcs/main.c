@@ -6,7 +6,7 @@
 */
 #include "lemin.h"
 
-int main(void)
+int main(int ac, char **av)
 {
 	char	**tab = NULL;
 	t_infos	*infos = NULL;
@@ -20,5 +20,5 @@ int main(void)
 	init_graph(&node, infos, tab);
 	display_infos(infos);
 	send_ants(&node);
-	return (0);
+	return (SUCCESS);
 }
