@@ -102,7 +102,6 @@ int fuel_tnl(char **line, t_infos *infos)
 		return (FAILURE);
 	line[1][found_l_problem(line[1])] = '\0';
 	if (look_for_index(line, infos, 0, NULL) == FAILURE) {
-		my_print_err("ERROR : Invalid tunnel\n");
 		return (FAILURE);
 	}
 	return (SUCCESS);

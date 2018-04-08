@@ -7,6 +7,18 @@
 
 #include "lemin.h"
 
+static void print_tls(t_node *tunnels)
+{
+	t_node		*tmp = tunnels;
+	int		*data = NULL;
+
+	do {
+		data = (int *)tmp->data;
+		my_printf("%s-%s\n", data[0], data[1]);
+		tmp = tmp->next;
+	} while (tmp != tunnels);
+}
+
 int print_err_rooms(int nb_ants, t_node *rooms, t_node *t_display)
 {
 	t_node	*head = rooms;
@@ -25,7 +37,7 @@ int print_err_rooms(int nb_ants, t_node *rooms, t_node *t_display)
 	} while (rooms != head);
 	if (t_display != NULL) {
 		my_printf("#tunnels\n");
-		print_tunnels(t_display);
+		print_tls(t_display);
 	}
 	return (SUCCESS);
 }

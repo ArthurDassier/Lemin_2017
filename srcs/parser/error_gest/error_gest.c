@@ -12,7 +12,6 @@
 int check_params(char **tab)
 {
 	if (!tab[0] || !tab[1] || !tab[2]) {
-		my_print_err("ERROR : Bad folder\n");
 		return (FAILURE);
 	}
 	return (SUCCESS);
@@ -35,7 +34,6 @@ int end_n_start(t_node *rooms)
 		tmp_node = tmp_node->next;
 	} while (tmp_node != rooms);
 	if (start != 1 || end != 1) {
-		my_print_err("ERROR : No start / end\n");
 		return (FAILURE);
 	}
 	return (SUCCESS);
@@ -47,7 +45,6 @@ static int check_all_names(char **names, int i)
 
 	while (names[j]) {
 		if (j != i && my_strcmp(names[i], names[j]) == 0) {
-			my_print_err("ERROR : 2 rooms with the same name\n");
 			return (FAILURE);
 		}
 		++j;

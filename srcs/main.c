@@ -22,7 +22,7 @@ int main(void)
 	if (end_to_start(infos, tab) == FAILURE)
 		return (FAILURE);
 	init_graph(&node, infos, tab);
-	display_infos(infos);
+	display_infos(infos, tab);
 	send_ants(&node);
 	return (0);
 }
