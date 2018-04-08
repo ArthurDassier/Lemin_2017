@@ -8,7 +8,6 @@
 #include "lemin.h"
 
 // display infos of a room (name, x, y) with ##start and ##end
-
 static void print_room(t_room *room)
 {
 	if (room->type == 1)
@@ -20,7 +19,6 @@ static void print_room(t_room *room)
 }
 
 // find room start and display the nb of ants
-
 static int find_nb_of_ants(t_node *room)
 {
 	t_node	*tmp = room;
@@ -34,7 +32,6 @@ static int find_nb_of_ants(t_node *room)
 }
 
 // print tunnels (bond)
-
 static void print_tunnels(t_node *tunnels)
 {
 	t_node		*tmp = tunnels;
@@ -48,7 +45,6 @@ static void print_tunnels(t_node *tunnels)
 }
 
 // main function to diaplay NB_ANT / ROOMS / TUNNELS
-
 void display_infos(t_infos *infos)
 {
 	t_node	*head = infos->rooms;
