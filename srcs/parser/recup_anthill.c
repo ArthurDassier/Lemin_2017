@@ -82,6 +82,8 @@ char **recup_anthill(t_infos **infos, char **index)
 	int	type_next_room = 0;
 
 	*infos = malloc(sizeof(t_infos));
+	if (*infos == NULL)
+		return (NULL);
 	init_inf(infos);
 	while ((read = getline(&line, &len, fd)) != -1)
 		if (load_file(line, *infos, &type_next_room) == FAILURE)
@@ -91,7 +93,5 @@ char **recup_anthill(t_infos **infos, char **index)
 	if (end_n_start((*infos)->rooms) == FAILURE)
 		return (NULL);
 	index = fuel_room_name(*infos);
-	if (index == NULL)
-		return (NULL);
 	return (index);
 }
