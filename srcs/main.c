@@ -14,8 +14,7 @@ int main(void)
 
 	tab = recup_anthill(&infos, tab);
 	if (tab == NULL) {
-		if (print_err_rooms(infos->err_ant, infos->rooms,
-			infos->tunnels) == FAILURE)
+		if (print_err_rooms(infos->err_ant, infos->rooms) == FAILURE)
 			return (FAILURE);
 		return (0);
 	}

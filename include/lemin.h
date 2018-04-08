@@ -83,7 +83,7 @@ int	end_n_start(t_node *);
 int	check_for_double_names(char **);
 int	look_for_coordinates(t_node *);
 int	end_to_start(t_infos *, char **);
-int print_err_rooms(int nb_ants, t_node *rooms, t_node *t_display);
+int print_err_rooms(int nb_ants, t_node *rooms);
 void print_room(t_room *room);
 
 #endif /* !LEMIN_H_ */
