@@ -13,8 +13,12 @@ int main(void)
 	t_node	*node = NULL;
 
 	tab = recup_anthill(&infos, tab);
-	if (tab == NULL)
-		return (FAILURE);
+	if (tab == NULL) {
+		if (print_err_rooms(infos->err_ant, infos->rooms,
+			infos->tunnels) == FAILURE)
+			return (FAILURE);
+		return (0);
+	}
 	if (end_to_start(infos, tab) == FAILURE)
 		return (FAILURE);
 	init_graph(&node, infos, tab);

@@ -8,7 +8,7 @@
 #include "lemin.h"
 
 // display infos of a room (name, x, y) with ##start and ##end
-static void print_room(t_room *room)
+void print_room(t_room *room)
 {
 	if (room->type == 1)
 		my_printf("##start\n");
@@ -32,7 +32,7 @@ static int find_nb_of_ants(t_node *room)
 }
 
 // print tunnels (bond)
-static void print_tunnels(t_node *tunnels)
+void print_tunnels(t_node *tunnels)
 {
 	t_node		*tmp = tunnels;
 	int		*data = NULL;

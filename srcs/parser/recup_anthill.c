@@ -40,6 +40,7 @@ static int init_anthill(char *line, t_infos *infos, int *type)
 
 	if (nb_ants == 0) {
 		nb_ants = my_getnbr(line);
+		infos->err_ant = nb_ants;
 		if (nb_ants <= 0)
 			return (FAILURE);
 		return (SUCCESS);
