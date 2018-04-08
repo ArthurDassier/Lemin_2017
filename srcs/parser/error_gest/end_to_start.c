@@ -72,15 +72,18 @@ int end_to_start(t_infos *infos, char **index)
 
 	while (index[i] != NULL)
 		++i;
-	path = malloc(sizeof(int) * (i + 1));
+	path = malloc(sizeof(int) * (i * i));
 	if (path == NULL)
 		return (FAILURE);
 	path[0] = infos->index_start;
 	path[1] = -1;
 	while (i != 0) {
-		if (build_path(infos, path) == SUCCESS)
+		if (build_path(infos, path) == SUCCESS) {
+			free(path);
 			return (SUCCESS);
+		}
 		--i;
 	}
+	free(path);
 	return (FAILURE);
 }
