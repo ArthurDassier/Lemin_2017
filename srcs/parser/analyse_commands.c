@@ -22,11 +22,13 @@ int found_tunnels(char *line)
 
 static int command(char *line)
 {
-	if (my_strcmp(line, "##start\n") == 0)
+	if (my_strcmp(line, "##start\n") == 0) {
+		my_putstr("##start\n");
 		return (START);
-	else if (my_strcmp(line, "##end\n") == 0)
+	} else if (my_strcmp(line, "##end\n") == 0) {
+		my_putstr("##end\n");
 		return (END);
-	else
+	}else
 		return (NORMAL);
 }
 

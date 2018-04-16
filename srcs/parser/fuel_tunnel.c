@@ -98,11 +98,19 @@ int room, t_room *tmp_room)
 //get tunnel infos
 int fuel_tnl(char **line, t_infos *infos)
 {
-	if (!line[0] || !line[1] || line[2] || infos->rooms == NULL)
+	static int	first = 0;
+
+	if (!line[0] || !line[1] || line[2] || infos->rooms == NULL ||
+	end_n_start(infos->rooms) == FAILURE)
 		return (FAILURE);
 	line[1][found_l_problem(line[1])] = '\0';
 	if (look_for_index(line, infos, 0, NULL) == FAILURE) {
 		return (FAILURE);
 	}
+	if (first == 0) {
+		my_putstr("#tunnels\n");
+		first = 1;
+	}
+	my_printf("%s-%s\n", line[0], line[1]);
 	return (SUCCESS);
 }
