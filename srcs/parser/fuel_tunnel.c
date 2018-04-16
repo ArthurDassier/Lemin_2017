@@ -27,6 +27,8 @@ char **fuel_room_name(t_infos *infos)
 	t_node	*tmp_node = infos->rooms;
 	t_room	*tmp_room = NULL;
 
+	if (tmp_node == NULL)
+		return (NULL);
 	for (i = 0; i == 0 || tmp_node != infos->rooms; ++i)
 		tmp_node = tmp_node->next;
 	tab = malloc(sizeof(char *) * (i + 1));

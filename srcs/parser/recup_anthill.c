@@ -61,14 +61,11 @@ static int init_anthill(char *line, t_infos *infos, int *type)
 
 static int tunnel_or_room(char *ln, t_infos *inf, int *next_room)
 {
-	static int	i = -1;
-
 	if (found_tunnels(ln) == 1) {
 		if (fuel_tnl(my_str_to_wordtab_delim(ln, "-"), inf) == 84)
 			return (FAILURE);
 	} else if (init_anthill(ln, inf, next_room) == FAILURE)
 		return (FAILURE);
-	++i;
 	return (SUCCESS);
 }
 
@@ -98,6 +95,5 @@ char **recup_anthill(t_infos **infos, char **index)
 		if (load_file(line, *infos, &type_next_room) == FAILURE)
 			return (NULL);
 	index = fuel_room_name(*infos);
-	my_putstr("#moves\n");
 	return (index);
 }

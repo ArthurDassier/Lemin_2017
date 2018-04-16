@@ -21,8 +21,7 @@ int main(int ac, char **av)
 			return (FAILURE);
 		return (0);
 	}
-	if (end_to_start(infos, tab) == FAILURE)
-		return (FAILURE);
+	my_putstr("#moves\n");
 	init_graph(&node, infos, tab);
 	//display_infos(infos, tab);
 	send_ants(&node);

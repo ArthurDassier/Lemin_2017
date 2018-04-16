@@ -21,4 +21,5 @@ int print_err_rooms(int nb_ants)
 {
 	if (nb_ants <= 0)
 		return (FAILURE);
+	return (SUCCESS);
 }
