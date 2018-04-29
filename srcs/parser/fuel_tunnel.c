@@ -102,6 +102,7 @@ int fuel_tnl(char **line, t_infos *infos)
 {
 	static int	first = 0;
 
+	//N'IMPORTE QUOI ! A REGLER SINON SEGFAULT
 	if (!line[0] || !line[1] || line[2] || infos->rooms == NULL ||
 	end_n_start(infos->rooms) == FAILURE)
 		return (FAILURE);
