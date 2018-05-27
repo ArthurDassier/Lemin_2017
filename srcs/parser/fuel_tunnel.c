@@ -101,9 +101,10 @@ int room, t_room *tmp_room)
 int fuel_tnl(char **line, t_infos *infos)
 {
 	static int	first = 0;
+	int		nb = -1;
 
-	//N'IMPORTE QUOI ! A REGLER SINON SEGFAULT
-	if (!line[0] || !line[1] || line[2] || infos->rooms == NULL ||
+	for (; line[nb] != NULL; ++nb);
+	if (nb == -1 || nb == 2 || infos->rooms == NULL ||
 	end_n_start(infos->rooms) == FAILURE)
 		return (FAILURE);
 	line[1][found_l_problem(line[1])] = '\0';
